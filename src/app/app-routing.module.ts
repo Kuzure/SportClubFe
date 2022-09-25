@@ -1,18 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { InfoComponent } from './components/info/info.component';
+import { LoginComponent } from './components/login/login.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
-  // lazy loaded dashboard module
+  { path: '', redirectTo: '/shop', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   {
-    path: '',
-    loadChildren: () =>
-      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    path: 'dashboard',
+    component: DashboardComponent,
   },
   {
-    path: '**',
-    redirectTo: '',
-    pathMatch: 'full',
+    path: 'info',
+    component: InfoComponent,
   },
+  {
+    path: 'user',
+    component: UserComponent,
+  },
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({
