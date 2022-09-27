@@ -6,7 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/shop', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'dashboard',
@@ -20,6 +20,7 @@ const routes: Routes = [
     path: 'user',
     component: UserComponent,
   },
+  
   { path: '**', component: LoginComponent },
 ];
 

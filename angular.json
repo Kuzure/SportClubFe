@@ -9,7 +9,6 @@
         "@schematics/angular:component": {
           "style": "scss",
           "changeDetection": "Default",
-          "entryComponent": false,
           "export": false,
           "flat": false,
           "inlineStyle": false,
@@ -18,9 +17,8 @@
           "prefix": "",
           "selector": "",
           "skipImport": false,
-          "spec": true,
           "viewEncapsulation": "Emulated",
-          "skipTests": "false"
+          "skipTests": false
         },
         "@schematics/angular:module": {
           "commonModule": true,
@@ -72,9 +70,13 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {

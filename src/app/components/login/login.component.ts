@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-} from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
-import { AccountService } from 'src/app/service/account.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -15,57 +9,36 @@ import { AccountService } from 'src/app/service/account.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  loading = false;
-  submitted = false;
-  returnUrl: string;
+  form: any = {
+    username: null,
+    password: null,
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
   constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private accountService: AccountService
-  ) {
-    // redirect to home if already logged in
-    if (this.accountService.userValue) {
-      this.router.navigate(['/']);
-    }
-  }
+    private authService: AuthService,
+    private ruter: Router,
+    private tokenStorage: TokenStorageService
+  ) {}
 
-  ngOnInit() {
-    this.loginForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-    });
+  ngOnInit(): void {}
 
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  }
+  onSubmit(): void {
+    const { username, password } = this.form;
 
-  // convenience getter for easy access to form fields
-  get f() {
-    return this.loginForm.controls;
-  }
+    this.authService.login(username, password).subscribe(
+      (data) => {
+        this.tokenStorage.set('Token', data);
 
-  onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    this.loading = true;
-    this.accountService
-      .login(this.f['username'].value, this.f['password'].value)
-      .pipe(first())
-      .subscribe(
-        (data) => {
-          this.router.navigate([this.returnUrl]);
-        },
-        () => {
-          this.loading = false;
-        }
-      );
+        this.ruter.navigate(['/dashboard']);
+      },
+      (err) => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    );
   }
 }

@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccountService } from './service/account.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -39,7 +38,7 @@ import { InfoComponent } from './components/info/info.component';
     MatToolbarModule,
     MatIconModule,
   ],
-  providers: [AccountService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

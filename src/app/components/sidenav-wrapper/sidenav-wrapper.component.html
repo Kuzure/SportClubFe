@@ -9,24 +9,24 @@
           >chevron_right
         </mat-icon>
       </mat-list-item>
+      <span *ngIf="isLogin">
+        <mat-list-item [routerLink]="'dashboard'">
+          <mat-icon mat-list-icon>home</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
+        </mat-list-item>
 
-      <mat-list-item [routerLink]="'dashboard'">
-        <mat-icon mat-list-icon>home</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
-      </mat-list-item>
+        <mat-list-item [routerLink]="'info'">
+          <mat-icon mat-list-icon>important_devices</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Info</span>
+        </mat-list-item>
 
-      <mat-list-item [routerLink]="'info'">
-        <mat-icon mat-list-icon>important_devices</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">Info</span>
-      </mat-list-item>
-
-      <mat-list-item [routerLink]="'user'">
-        <mat-icon mat-list-icon>supervisor_account</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">User</span>
-      </mat-list-item>
-
-      <mat-list-item [routerLink]="'login'">
-        <mat-icon mat-list-icon>supervisor_account</mat-icon>
+        <mat-list-item [routerLink]="'user'">
+          <mat-icon mat-list-icon>supervisor_account</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">User</span>
+        </mat-list-item>
+      </span>
+      <mat-list-item *ngIf="!isLogin" [routerLink]="'login'">
+        <mat-icon mat-list-icon>login</mat-icon>
         <span *ngIf="isExpanded" class="menu-item">Login</span>
       </mat-list-item>
     </mat-nav-list>
