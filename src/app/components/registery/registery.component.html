@@ -1,0 +1,134 @@
+<div class="card card-container">
+  <div class="col">
+    <h2 class="row">Rejestracja</h2>
+    <form [formGroup]="registeryForm" class="row">
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="pat@example.com"
+            formControlName="email"
+            required
+          />
+          <mat-error *ngIf="registeryForm.get('email')?.invalid">{{
+            getErrorMessage("email")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Hasło</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            [type]="hide ? 'password' : 'text'"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="registeryForm.get('password')?.invalid">{{
+            getErrorMessage("password")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Imię</mat-label>
+          <input matInput required formControlName="firstName" />
+          <mat-error *ngIf="registeryForm.get('firstName')?.invalid">{{
+            getErrorMessage("firstName")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Nazwisko</mat-label>
+          <input matInput required formControlName="lastName" />
+          <mat-error *ngIf="registeryForm.get('lastName')?.invalid">{{
+            getErrorMessage("lastName")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Wybierz date urodzenia</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            required
+            formControlName="dateOfBirth"
+          />
+          <mat-hint>DD/MM/RRRR</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="registeryForm.get('dateOfBirth')?.invalid">{{
+            getErrorMessage("dateOfBirth")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Numer Telefonu</mat-label>
+          <input
+            matInput
+            required
+            formControlName="phoneNumber"
+            maxlength="9"
+          />
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error *ngIf="registeryForm.get('phoneNumber')?.invalid">{{
+            getErrorMessage("phoneNumber")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button value="male">Mężczyzna</mat-radio-button>
+          <mat-radio-button value="female">Kobieta</mat-radio-button>
+        </mat-radio-group>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Wybierz swój stopień</mat-label>
+          <mat-select formControlName="degree">
+            <mat-option value="kyu1">kyu1</mat-option>
+            <mat-option value="kyu2">kyu2</mat-option>
+            <mat-option value="kyu3">kyu2</mat-option>
+            <mat-option value="kyu4">kyu2</mat-option>
+            <mat-option value="kyu5">kyu2</mat-option>
+            <mat-option value="kyu6">kyu2</mat-option>
+            <mat-option value="dan1">dan1</mat-option>
+            <mat-option value="dan2">dan2</mat-option>
+            <mat-option value="dan3">dan3</mat-option>
+            <mat-option value="dan4">dan4</mat-option>
+          </mat-select>
+          <mat-error *ngIf="registeryForm.get('degree')?.invalid">{{
+            getErrorMessage("degree")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+    </form>
+    <button
+      mat-raised-button
+      color="primary"
+      class="row d-flex justify-content-center"
+      (click)="onSubmit()"
+    >
+      Zarajestruj
+    </button>
+    <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed">
+      Login failed: {{ errorMessage }}
+    </div>
+  </div>
+</div>

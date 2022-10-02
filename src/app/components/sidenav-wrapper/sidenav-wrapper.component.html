@@ -24,10 +24,23 @@
           <mat-icon mat-list-icon>supervisor_account</mat-icon>
           <span *ngIf="isExpanded" class="menu-item">User</span>
         </mat-list-item>
+
+        <mat-list-item
+          class="justify-content-end"
+          [routerLink]="'login'"
+          (click)="logOut()"
+        >
+          <mat-icon mat-list-icon>logout</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Wyloguj</span>
+        </mat-list-item>
       </span>
       <mat-list-item *ngIf="!isLogin" [routerLink]="'login'">
         <mat-icon mat-list-icon>login</mat-icon>
         <span *ngIf="isExpanded" class="menu-item">Login</span>
+      </mat-list-item>
+      <mat-list-item *ngIf="!isLogin" [routerLink]="'rejestracja'">
+        <mat-icon mat-list-icon>login</mat-icon>
+        <span *ngIf="isExpanded" class="menu-item">Rejestracja</span>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>

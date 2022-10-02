@@ -7,6 +7,8 @@ import {
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { User } from '../models/user';
 import { ResultModel } from '../models/result-model';
+import { RegisteryUser } from '../models/user-register-model';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +42,12 @@ export class AuthService {
         })
       );
   }
-
+  register(user: RegisteryUser) {
+    return this.http.post<ResultModel>(
+      `https://localhost:7267/api/user/register`,
+      user
+    );
+  }
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
