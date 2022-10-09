@@ -1,1 +1,94 @@
-<p>user works!</p>
+<div class="demo-button-container">
+  <button mat-raised-button (click)="addData()" class="demo-button">
+    Add data
+  </button>
+  <button mat-raised-button (click)="removeData()" class="demo-button">
+    Remove data
+  </button>
+</div>
+<div class="border">
+  <table
+    mat-table
+    [dataSource]="competitorList | slice: lowValue:highValue"
+    class="mat-elevation-z8 demo-table"
+  >
+    <!-- Position Column -->
+    <ng-container matColumnDef="idex">
+      <th mat-header-cell *matHeaderCellDef>Nr</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ i + 1 + lowValue }}
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef>Imię</th>
+      <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Nazwisko</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="dateOfBirth">
+      <th mat-header-cell *matHeaderCellDef>Data Urodzenia</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dateOfBirth | date: "dd MMM yyyy" }}
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef>Numer Telefonu</th>
+      <td mat-cell *matCellDef="let element">{{ element.phoneNumber }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef>Płeć</th>
+      <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="degree">
+      <th mat-header-cell *matHeaderCellDef>Stopień</th>
+      <td mat-cell *matCellDef="let element">{{ element.degree }}</td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="is_Paid">
+      <th mat-header-cell *matHeaderCellDef>Opłacona składka</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.is_Paid ? "Tak" : "Nie" }}
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="medicalExaminationExpiryDate">
+      <th mat-header-cell *matHeaderCellDef>Data Ważności Badań Lekarskich</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.medicalExaminationExpiryDate | date: "dd MMM yyyy" }}
+      </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="groupName">
+      <th mat-header-cell *matHeaderCellDef>Nazwa Grupy</th>
+      <td mat-cell *matCellDef="let element">{{ element.groupName }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [length]="competitorList.length"
+    pageSize="20"
+    (page)="getPaginatorData($event)"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons="false"
+  >
+  </mat-paginator>
+</div>

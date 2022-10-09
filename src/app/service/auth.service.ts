@@ -18,7 +18,7 @@ export class AuthService {
   public currentUser: Observable<User>;
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(
-      JSON.parse(localStorage.getItem('currentUser')!)
+      JSON.parse(localStorage.getItem('Token')!)
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -29,7 +29,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http
-      .post<ResultModel>(`https://localhost:7267/api/user/login`, {
+      .post<ResultModel>(`https://localhost:44388/api/user/login`, {
         email,
         password,
       })
@@ -44,13 +44,13 @@ export class AuthService {
   }
   register(user: RegisteryUser) {
     return this.http.post<ResultModel>(
-      `https://localhost:7267/api/user/register`,
+      `https://localhost:44388/api/user/register`,
       user
     );
   }
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('Token');
     this.currentUserSubject.next(null!);
   }
 }
