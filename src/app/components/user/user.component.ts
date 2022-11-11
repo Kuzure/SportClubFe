@@ -22,22 +22,32 @@ export class UserComponent implements OnInit {
     'groupName',
   ];
   competitorList: CompetitorList[];
-  lowValue: number = 0;
-  highValue: number = 20;
-
+  itemsPerPage: number = 5;
+  public currentPage = 1;
+  totalCount: number;
+  maxPage: number;
   addData() {}
 
+  public handlePage(e: any) {
+    this.currentPage = e.pageIndex + 1;
+    this.itemsPerPage = e.pageSize;
+
+    this.getPageableCompetitor();
+  }
+  getPageableCompetitor() {
+    this.competitorService
+      .getCompetitorList(this.currentPage, this.itemsPerPage)
+      .subscribe((res) => {
+        this.competitorList = res.result;
+        this.totalCount = res.totalCount;
+        this.maxPage = res.totalPages;
+        this.currentPage = res.currentPage;
+      });
+  }
   removeData() {}
   constructor(private competitorService: CompetitorService) {}
 
   ngOnInit(): void {
-    this.competitorService
-      .getCompetitorList()
-      .subscribe((res) => (this.competitorList = res.result));
-  }
-  public getPaginatorData(event: PageEvent): PageEvent {
-    this.lowValue = event.pageIndex * event.pageSize;
-    this.highValue = this.lowValue + event.pageSize;
-    return event;
+    this.getPageableCompetitor();
   }
 }

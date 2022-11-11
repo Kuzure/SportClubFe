@@ -10,6 +10,9 @@ export interface CompetitorListResult {
   code: number;
   message: string;
   isError: boolean;
+  currentPage: number;
+  totalCount: number;
+  totalPages: number;
 }
 @Injectable({
   providedIn: 'root',
@@ -20,14 +23,17 @@ export class CompetitorService {
   constructor(private http: HttpClient) {
     this.currentUser = localStorage.getItem('Token')!;
   }
-  getCompetitorList(): Observable<CompetitorListResult> {
+  getCompetitorList(
+    page: number,
+    itemsPerPage: number
+  ): Observable<CompetitorListResult> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + this.currentUser,
     });
 
     return this.http.get<CompetitorListResult>(
-      `https://localhost:44388/api/Competitor/list`,
+      `https://localhost:44388/api/Competitor/pageable?Page=${page}&ItemsPerPage=${itemsPerPage}`,
       { headers: headers }
     );
   }
