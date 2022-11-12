@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         this.ruter.navigate(['/dashboard']);
       },
       (err) => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = Object.values(err.error.errors).toLocaleString();
         this.isLoginFailed = true;
       }
     );

@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject, map } from 'rxjs';
 import { ResultModel } from '../models/result-model';
 import { User } from '../models/user';
 import { CompetitorList } from './../models/competitorList-model';
+import { CompetitorAdd } from './../models/competitor-add-model';
 
 export interface CompetitorListResult {
   result: Array<CompetitorList>;
@@ -35,6 +36,18 @@ export class CompetitorService {
     return this.http.get<CompetitorListResult>(
       `https://localhost:44388/api/Competitor/pageable?Page=${page}&ItemsPerPage=${itemsPerPage}`,
       { headers: headers }
+    );
+  }
+  addCompetitor(competitor: CompetitorAdd) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.post<ResultModel>(
+      `https://localhost:44388/api/Competitor/Add`,
+      competitor,
+      { headers }
     );
   }
 }

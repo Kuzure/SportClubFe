@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserComponent } from './components/Competitor/competitor-list/user.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InfoComponent } from './components/info/info.component';
 import { LoginComponent } from './components/login/login.component';
-import { UserComponent } from './components/user/user.component';
 import { RegisteryComponent } from './components/registery/registery.component';
+import { CompetiorAddComponent } from './components/Competitor/competior-add/competior-add.component';
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'rejestracja', component: RegisteryComponent },
   {
@@ -18,11 +18,15 @@ const routes: Routes = [
     component: InfoComponent,
   },
   {
-    path: 'user',
+    path: 'competitor',
     component: UserComponent,
   },
+  {
+    path: 'competitor/add',
+    component: CompetiorAddComponent,
+  },
 
-  { path: '**', component: LoginComponent },
+  { path: '**', component: DashboardComponent },
 ];
 
 @NgModule({

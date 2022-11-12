@@ -12,7 +12,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginComponent } from './components/login/login.component';
 import { SidenavWrapperComponent } from './components/sidenav-wrapper/sidenav-wrapper.component';
-import { UserComponent } from './components/user/user.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InfoComponent } from './components/info/info.component';
 import { RegisteryComponent } from './components/registery/registery.component';
@@ -26,6 +25,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import '@angular/common/locales/global/pl';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { UserComponent } from './components/Competitor/competitor-list/user.component';
+import { CompetiorAddComponent } from './components/Competitor/competior-add/competior-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     DashboardComponent,
     InfoComponent,
     RegisteryComponent,
+    CompetiorAddComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
 import { CompetitorList } from 'src/app/models/competitorList-model';
 import { CompetitorService } from 'src/app/service/competitor.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -26,7 +26,9 @@ export class UserComponent implements OnInit {
   public currentPage = 1;
   totalCount: number;
   maxPage: number;
-  addData() {}
+  addData() {
+    this.router.navigate(['competitor/add']);
+  }
 
   public handlePage(e: any) {
     this.currentPage = e.pageIndex + 1;
@@ -45,7 +47,10 @@ export class UserComponent implements OnInit {
       });
   }
   removeData() {}
-  constructor(private competitorService: CompetitorService) {}
+  constructor(
+    private competitorService: CompetitorService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getPageableCompetitor();

@@ -2,19 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { Router } from '@angular/router';
-import { Gender, Kyu, RegisteryUser } from 'src/app/models/user-register-model';
-import { AuthService } from './../../service/auth.service';
+import { RegisteryUser } from 'src/app/models/user-register-model';
+import { AuthService } from 'src/app/service/auth.service';
+import { CompetitorService } from 'src/app/service/competitor.service';
 
 @Component({
-  selector: 'app-registery',
-  templateUrl: './registery.component.html',
-  styleUrls: ['./registery.component.scss'],
+  selector: 'app-competior-add',
+  templateUrl: './competior-add.component.html',
+  styleUrls: ['./competior-add.component.scss'],
 })
-export class RegisteryComponent implements OnInit {
+export class CompetiorAddComponent implements OnInit {
   constructor(
     private dateAdapter: DateAdapter<Date>,
-    private authService: AuthService,
-    private ruter: Router
+    private ruter: Router,
+    private competitorService: CompetitorService,
   ) {
     this.dateAdapter.setLocale('pl-PL');
   }
@@ -41,12 +42,7 @@ export class RegisteryComponent implements OnInit {
     { name: 'dan3', value: 9 },
   ];
 
-  public registeryForm = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(5),
-    ]),
+  public addCompetitorForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     dateOfBirth: new FormControl('', Validators.required),
@@ -57,6 +53,7 @@ export class RegisteryComponent implements OnInit {
     ]),
     gender: new FormControl('', Validators.required),
     degree: new FormControl('', Validators.required),
+    medicalExaminationExpiryDate: new FormControl('', Validators.required),
     is_Paid: new FormControl(false),
   });
 
@@ -64,34 +61,34 @@ export class RegisteryComponent implements OnInit {
 
   public onSubmit() {
     // TODO: Use EventEmitter with form value
-    if (!this.registeryForm.invalid) {
-      console.warn(this.registeryForm.value);
+    if (!this.addCompetitorForm.invalid) {
+      console.warn(this.addCompetitorForm.value);
       const gnder = this.genders.find(
-        (x) => x.name == this.registeryForm.controls['gender'].value
+        (x) => x.name == this.addCompetitorForm.controls['gender'].value
       );
       const kyu = this.kyus.find(
-        (x) => x.name == this.registeryForm.controls['degree'].value
+        (x) => x.name == this.addCompetitorForm.controls['degree'].value
       );
-      const value = JSON.stringify(this.registeryForm.value);
+      const value = JSON.stringify(this.addCompetitorForm.value);
       this.usermodel = JSON.parse(value);
       this.usermodel.gender = gnder!.value;
       this.usermodel.degree = kyu!.value;
-      this.authService.register(this.usermodel).subscribe(
+      this.competitorService.addCompetitor(this.usermodel).subscribe(
         () => {
-          this.ruter.navigate(['/login']);
+          this.ruter.navigate(['/competitor']);
         },
         (err) => {
-          this.errorMessage = Object.values(err.error.errors).toLocaleString();
+          this.errorMessage = err.error.message;
           this.isLoginFailed = true;
         }
       );
-    } else {
-      this.errorMessage = 'Nie wszyskie pola zostały wypełnione';
-      this.isLoginFailed = true;
     }
   }
+  public onBack() {
+    this.ruter.navigate(['/competitor']);
+  }
   getErrorMessage(field: string) {
-    if (this.registeryForm?.get(field)?.hasError('required')) {
+    if (this.addCompetitorForm?.get(field)?.hasError('required')) {
       return 'wprowadź dane';
     }
     return;

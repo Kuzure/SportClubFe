@@ -1,49 +1,12 @@
 <div class="card card-container">
   <div class="col">
-    <h2 class="row">Rejestracja</h2>
-    <form [formGroup]="registeryForm" class="row">
-      <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
-          <input
-            matInput
-            placeholder="pat@example.com"
-            formControlName="email"
-            required
-          />
-          <mat-error *ngIf="registeryForm.get('email')?.invalid">{{
-            getErrorMessage("email")
-          }}</mat-error>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Hasło</mat-label>
-          <input
-            matInput
-            formControlName="password"
-            [type]="hide ? 'password' : 'text'"
-            required
-          />
-          <button
-            mat-icon-button
-            matSuffix
-            (click)="hide = !hide"
-            [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide"
-          >
-            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-          </button>
-          <mat-error *ngIf="registeryForm.get('password')?.invalid">{{
-            getErrorMessage("password")
-          }}</mat-error>
-        </mat-form-field>
-      </p>
+    <h2 class="row">Dodaj Zawodnika</h2>
+    <form [formGroup]="addCompetitorForm" class="row">
       <p>
         <mat-form-field appearance="fill">
           <mat-label>Imię</mat-label>
           <input matInput required formControlName="firstName" />
-          <mat-error *ngIf="registeryForm.get('firstName')?.invalid">{{
+          <mat-error *ngIf="addCompetitorForm.get('firstName')?.invalid">{{
             getErrorMessage("firstName")
           }}</mat-error>
         </mat-form-field>
@@ -52,14 +15,14 @@
         <mat-form-field appearance="fill">
           <mat-label>Nazwisko</mat-label>
           <input matInput required formControlName="lastName" />
-          <mat-error *ngIf="registeryForm.get('lastName')?.invalid">{{
+          <mat-error *ngIf="addCompetitorForm.get('lastName')?.invalid">{{
             getErrorMessage("lastName")
           }}</mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="fill">
-          <mat-label>Wybierz date urodzenia</mat-label>
+          <mat-label>Data urodzenia</mat-label>
           <input
             matInput
             [matDatepicker]="picker"
@@ -72,7 +35,7 @@
             [for]="picker"
           ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="registeryForm.get('dateOfBirth')?.invalid">{{
+          <mat-error *ngIf="addCompetitorForm.get('dateOfBirth')?.invalid">{{
             getErrorMessage("dateOfBirth")
           }}</mat-error>
         </mat-form-field>
@@ -87,20 +50,20 @@
             maxlength="9"
           />
           <mat-icon matSuffix>phone</mat-icon>
-          <mat-error *ngIf="registeryForm.get('phoneNumber')?.invalid">{{
+          <mat-error *ngIf="addCompetitorForm.get('phoneNumber')?.invalid">{{
             getErrorMessage("phoneNumber")
           }}</mat-error>
         </mat-form-field>
       </p>
       <p>
-        <mat-radio-group formControlName="gender">
+        <mat-radio-group formControlName="gender" class="d-flex justify-content-center">
           <mat-radio-button value="male">Mężczyzna</mat-radio-button>
           <mat-radio-button value="female">Kobieta</mat-radio-button>
         </mat-radio-group>
       </p>
       <p>
         <mat-form-field appearance="fill">
-          <mat-label>Wybierz swój stopień</mat-label>
+          <mat-label>Wybierz stopień</mat-label>
           <mat-select formControlName="degree">
             <mat-option value="kyu1">kyu1</mat-option>
             <mat-option value="kyu2">kyu2</mat-option>
@@ -113,22 +76,56 @@
             <mat-option value="dan3">dan3</mat-option>
             <mat-option value="dan4">dan4</mat-option>
           </mat-select>
-          <mat-error *ngIf="registeryForm.get('degree')?.invalid">{{
+          <mat-error *ngIf="addCompetitorForm.get('degree')?.invalid">{{
             getErrorMessage("degree")
           }}</mat-error>
         </mat-form-field>
       </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Data ważności badań lekarskich</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            required
+            formControlName="medicalExaminationExpiryDate"
+          />
+          <mat-hint>DD/MM/RRRR</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error
+            *ngIf="
+              addCompetitorForm.get('medicalExaminationExpiryDate')?.invalid
+            "
+            >{{ getErrorMessage("medicalExaminationExpiryDate") }}</mat-error
+          >
+        </mat-form-field>
+      </p>
     </form>
-    <button
-      mat-raised-button
-      color="primary"
-      class="row d-flex justify-content-center"
-      (click)="onSubmit()"
-    >
-      Zarajestruj
-    </button>
+    <div class="row d-flex justify-content-center">
+      <button
+        mat-raised-button
+        color="primary"
+        class="col d-flex justify-content-center me-1"
+        (click)="onSubmit()"
+      >
+        Dodaj
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="col d-flex justify-content-center ms-1"
+        (click)="onBack()"
+      >
+        Wróć
+      </button>
+    </div>
+
     <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed">
-      Rejestracja nie powiodła się : {{ errorMessage }}
+      dodanie nie powiodło się : {{ errorMessage }}
     </div>
   </div>
 </div>
