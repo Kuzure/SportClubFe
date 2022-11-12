@@ -6,6 +6,7 @@ import { InfoComponent } from './components/info/info.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisteryComponent } from './components/registery/registery.component';
 import { CompetiorAddComponent } from './components/Competitor/competior-add/competior-add.component';
+import { GroupListComponent } from './components/group/group-list/group-list.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'rejestracja', component: RegisteryComponent },
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'competitor/add',
     component: CompetiorAddComponent,
+  },
+  {
+    path: 'group',
+    component: GroupListComponent,
   },
 
   { path: '**', component: DashboardComponent },

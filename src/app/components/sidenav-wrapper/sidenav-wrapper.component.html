@@ -21,8 +21,13 @@
         </mat-list-item>
 
         <mat-list-item [routerLink]="'competitor'">
-          <mat-icon mat-list-icon>supervisor_account</mat-icon>
+          <mat-icon mat-list-icon>people_outline</mat-icon>
           <span *ngIf="isExpanded" class="menu-item">Zawodnicy</span>
+        </mat-list-item>
+
+        <mat-list-item [routerLink]="'group'">
+          <mat-icon mat-list-icon>group</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Grupy</span>
         </mat-list-item>
 
         <mat-list-item

@@ -1,6 +1,5 @@
-import { Gender, Kyu } from 'src/app/models/user-register-model';
-
 export class CompetitorList {
+  id: string;
   firstName: string;
   lastName: string;
   dateOfBirth: Date;

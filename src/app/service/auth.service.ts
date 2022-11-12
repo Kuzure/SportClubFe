@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
-import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { User } from '../models/user';
 import { ResultModel } from '../models/result-model';
 import { RegisteryUser } from '../models/user-register-model';
-import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',

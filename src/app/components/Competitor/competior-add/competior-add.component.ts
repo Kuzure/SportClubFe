@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { RegisteryUser } from 'src/app/models/user-register-model';
-import { AuthService } from 'src/app/service/auth.service';
 import { CompetitorService } from 'src/app/service/competitor.service';
 
 @Component({
@@ -15,7 +14,7 @@ export class CompetiorAddComponent implements OnInit {
   constructor(
     private dateAdapter: DateAdapter<Date>,
     private ruter: Router,
-    private competitorService: CompetitorService,
+    private competitorService: CompetitorService
   ) {
     this.dateAdapter.setLocale('pl-PL');
   }

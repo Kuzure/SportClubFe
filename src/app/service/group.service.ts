@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CompetitorAdd } from '../models/competitor-add-model';
 import { ResultModel } from '../models/result-model';
-import { CompetitorList } from './../models/competitorList-model';
-import { CompetitorAdd } from './../models/competitor-add-model';
+import { GroupListModel } from './../models/group-list.model';
 
-export interface CompetitorListResult {
-  result: Array<CompetitorList>;
+export interface GroupListResult {
+  result: Array<GroupListModel>;
   code: number;
   message: string;
   isError: boolean;
@@ -17,23 +17,23 @@ export interface CompetitorListResult {
 @Injectable({
   providedIn: 'root',
 })
-export class CompetitorService {
+export class GroupService {
   public currentUser: string;
 
   constructor(private http: HttpClient) {
     this.currentUser = localStorage.getItem('Token')!;
   }
-  getCompetitorList(
+  getGroupList(
     page: number,
     itemsPerPage: number
-  ): Observable<CompetitorListResult> {
+  ): Observable<GroupListResult> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + this.currentUser,
     });
 
-    return this.http.get<CompetitorListResult>(
-      `https://localhost:44388/api/competitor/pageable?Page=${page}&ItemsPerPage=${itemsPerPage}`,
+    return this.http.get<GroupListResult>(
+      `https://localhost:44388/api/group/pageable?Page=${page}&ItemsPerPage=${itemsPerPage}`,
       { headers: headers }
     );
   }
@@ -44,7 +44,7 @@ export class CompetitorService {
     });
 
     return this.http.post<ResultModel>(
-      `https://localhost:44388/api/competitor/add`,
+      `https://localhost:44388/api/group/add`,
       competitor,
       { headers }
     );

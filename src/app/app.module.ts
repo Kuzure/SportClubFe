@@ -27,6 +27,7 @@ import '@angular/common/locales/global/pl';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserComponent } from './components/Competitor/competitor-list/user.component';
 import { CompetiorAddComponent } from './components/Competitor/competior-add/competior-add.component';
+import { GroupListComponent } from './components/group/group-list/group-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { CompetiorAddComponent } from './components/Competitor/competior-add/com
     InfoComponent,
     RegisteryComponent,
     CompetiorAddComponent,
+    GroupListComponent,
   ],
   imports: [
     BrowserModule,
