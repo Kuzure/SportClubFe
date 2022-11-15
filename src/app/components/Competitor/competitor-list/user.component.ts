@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CompetitorList } from 'src/app/models/competitorList-model';
 import { CompetitorService } from 'src/app/service/competitor.service';
 import { Router } from '@angular/router';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CompeitorDailogComponentComponent } from './../compeitor-dailog-component/compeitor-dailog-component.component';
 
 @Component({
   selector: 'app-user',
@@ -11,6 +13,7 @@ import { Router } from '@angular/router';
 export class UserComponent implements OnInit {
   displayedColumns: string[] = [
     'idex',
+    'button',
     'firstName',
     'lastName',
     'dateOfBirth',
@@ -46,10 +49,18 @@ export class UserComponent implements OnInit {
         this.currentPage = res.currentPage;
       });
   }
-  removeData() {}
+  addCompetitorToGroup(competitorId: string) {
+    this.dialog.open(CompeitorDailogComponentComponent, {
+      data: {
+        competitorId: competitorId,
+      },
+    });
+  }
+
   constructor(
     private competitorService: CompetitorService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {

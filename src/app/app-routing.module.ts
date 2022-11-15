@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisteryComponent } from './components/registery/registery.component';
 import { CompetiorAddComponent } from './components/Competitor/competior-add/competior-add.component';
 import { GroupListComponent } from './components/group/group-list/group-list.component';
+import { GroupAddComponent } from './components/group/group-add/group-add.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'rejestracja', component: RegisteryComponent },
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'group',
     component: GroupListComponent,
+  },
+  {
+    path: 'group/add',
+    component: GroupAddComponent,
   },
 
   { path: '**', component: DashboardComponent },

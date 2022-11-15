@@ -28,6 +28,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserComponent } from './components/Competitor/competitor-list/user.component';
 import { CompetiorAddComponent } from './components/Competitor/competior-add/competior-add.component';
 import { GroupListComponent } from './components/group/group-list/group-list.component';
+import { GroupAddComponent } from './components/group/group-add/group-add.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { CompeitorDailogComponentComponent } from './components/Competitor/compeitor-dailog-component/compeitor-dailog-component.component';
+import {
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +47,8 @@ import { GroupListComponent } from './components/group/group-list/group-list.com
     RegisteryComponent,
     CompetiorAddComponent,
     GroupListComponent,
+    GroupAddComponent,
+    CompeitorDailogComponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +72,8 @@ import { GroupListComponent } from './components/group/group-list/group-list.com
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
+    MatMenuModule,
+    MatDialogModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pl-PL' }],
   bootstrap: [AppComponent],

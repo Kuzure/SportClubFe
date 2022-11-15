@@ -1,0 +1,29 @@
+<div>
+  <h1 mat-dialog-title>Wybierz grupe</h1>
+  <mat-form-field appearance="fill">
+    <mat-label>Nazwa Grupy</mat-label>
+    <mat-select [(ngModel)]="group" name="group">
+      <mat-option *ngFor="let group of groups" [value]="group.id">
+        {{ group.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="row d-flex justify-content-center">
+    <button
+      mat-raised-button
+      color="primary"
+      class="col d-flex justify-content-center me-1"
+      (click)="onSubmit()"
+    >
+      Dodaj
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="col d-flex justify-content-center ms-1"
+      (click)="onBack()"
+    >
+      Wróć
+    </button>
+  </div>
+</div>

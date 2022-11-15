@@ -23,6 +23,19 @@ export class GroupService {
   constructor(private http: HttpClient) {
     this.currentUser = localStorage.getItem('Token')!;
   }
+  getGroups(): Observable<Array<GroupListModel>> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.get<Array<GroupListModel>>(
+      `https://localhost:44388/api/group`,
+      {
+        headers: headers,
+      }
+    );
+  }
   getGroupList(
     page: number,
     itemsPerPage: number
@@ -37,15 +50,15 @@ export class GroupService {
       { headers: headers }
     );
   }
-  addCompetitor(competitor: CompetitorAdd) {
+  addGroup(group: any) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + this.currentUser,
     });
 
     return this.http.post<ResultModel>(
-      `https://localhost:44388/api/group/add`,
-      competitor,
+      `https://localhost:44388/api/group`,
+      group,
       { headers }
     );
   }
