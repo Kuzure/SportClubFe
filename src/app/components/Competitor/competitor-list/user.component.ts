@@ -56,7 +56,9 @@ export class UserComponent implements OnInit {
       },
     });
   }
-
+  competitorData(competitorId: string) {
+    this.router.navigate(['/competitor', competitorId]);
+  }
   constructor(
     private competitorService: CompetitorService,
     private router: Router,

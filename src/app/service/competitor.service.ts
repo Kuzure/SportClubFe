@@ -62,4 +62,27 @@ export class CompetitorService {
       { headers }
     );
   }
+  getCompetitor(competitorId: string): Observable<CompetitorList> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.get<CompetitorList>(
+      `https://localhost:44388/api/competitor?id=${competitorId}`,
+      { headers: headers }
+    );
+  }
+  updateCompetitor(competitor: any) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.put<ResultModel>(
+      `https://localhost:44388/api/competitor`,
+      competitor,
+      { headers }
+    );
+  }
 }

@@ -8,6 +8,7 @@ import { RegisteryComponent } from './components/registery/registery.component';
 import { CompetiorAddComponent } from './components/Competitor/competior-add/competior-add.component';
 import { GroupListComponent } from './components/group/group-list/group-list.component';
 import { GroupAddComponent } from './components/group/group-add/group-add.component';
+import { CompeitorDetialComponentComponent } from './components/Competitor/compeitor-detial-component/compeitor-detial-component.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'rejestracja', component: RegisteryComponent },
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'competitor/add',
     component: CompetiorAddComponent,
+  },
+  {
+    path: 'competitor/:id',
+    component: CompeitorDetialComponentComponent,
   },
   {
     path: 'group',

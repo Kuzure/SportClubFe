@@ -1,0 +1,156 @@
+<div class="card card-container">
+  <div class="col">
+    <h2 class="row">Edytuj Zawodnika</h2>
+    <form [formGroup]="addCompetitorForm" class="row">
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Imię</mat-label>
+          <input matInput required formControlName="firstName" />
+          <mat-error *ngIf="addCompetitorForm.get('firstName')?.invalid">{{
+            getErrorMessage("firstName")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Nazwisko</mat-label>
+          <input matInput required formControlName="lastName" />
+          <mat-error *ngIf="addCompetitorForm.get('lastName')?.invalid">{{
+            getErrorMessage("lastName")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Data urodzenia</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            required
+            formControlName="dateOfBirth"
+          />
+          <mat-hint>DD/MM/RRRR</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="addCompetitorForm.get('dateOfBirth')?.invalid">{{
+            getErrorMessage("dateOfBirth")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Numer Telefonu</mat-label>
+          <input
+            matInput
+            required
+            formControlName="phoneNumber"
+            maxlength="9"
+          />
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error *ngIf="addCompetitorForm.get('phoneNumber')?.invalid">{{
+            getErrorMessage("phoneNumber")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-radio-group
+          formControlName="gender"
+          class="d-flex justify-content-center"
+        >
+          <mat-radio-button value="Mężczyzna">Mężczyzna</mat-radio-button>
+          <mat-radio-button value="Kobieta">Kobieta</mat-radio-button>
+        </mat-radio-group>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Wybierz stopień</mat-label>
+          <mat-select formControlName="degree">
+            <mat-option value="Kyu1">kyu1</mat-option>
+            <mat-option value="Kyu2">kyu2</mat-option>
+            <mat-option value="Kyu3">kyu2</mat-option>
+            <mat-option value="Kyu4">kyu2</mat-option>
+            <mat-option value="Kyu5">kyu2</mat-option>
+            <mat-option value="Kyu6">kyu2</mat-option>
+            <mat-option value="Dan1">dan1</mat-option>
+            <mat-option value="Dan2">dan2</mat-option>
+            <mat-option value="Dan3">dan3</mat-option>
+            <mat-option value="Dan4">dan4</mat-option>
+          </mat-select>
+          <mat-error *ngIf="addCompetitorForm.get('degree')?.invalid">{{
+            getErrorMessage("degree")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Data ważności badań lekarskich</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            required
+            formControlName="medicalExaminationExpiryDate"
+          />
+          <mat-hint>DD/MM/RRRR</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error
+            *ngIf="
+              addCompetitorForm.get('medicalExaminationExpiryDate')?.invalid
+            "
+            >{{ getErrorMessage("medicalExaminationExpiryDate") }}</mat-error
+          >
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Skład opłacona</mat-label>
+          <mat-select formControlName="is_Paid">
+            <mat-option [value]="true">Tak</mat-option>
+            <mat-option [value]="false">Nie</mat-option>
+          </mat-select>
+          <mat-error *ngIf="addCompetitorForm.get('is_Paid')?.invalid">{{
+            getErrorMessage("is_Paid")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Nazwa Grupy</mat-label>
+          <mat-select formControlName="groupId">
+            <mat-option *ngFor="let group of groups" [value]="group.id">
+              {{ group.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+    </form>
+    <div class="row d-flex justify-content-center">
+      <button
+        mat-raised-button
+        color="primary"
+        class="col d-flex justify-content-center me-1"
+        (click)="onSubmit()"
+      >
+        Zapisz
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="col d-flex justify-content-center ms-1"
+        (click)="onBack()"
+      >
+        Wróć
+      </button>
+    </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed">
+      dodanie nie powiodło się : {{ errorMessage }}
+    </div>
+  </div>
+</div>
