@@ -37,6 +37,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { CompeitorDetialComponentComponent } from './components/Competitor/compeitor-detial-component/compeitor-detial-component.component';
+import { GroupDetialComponent } from './components/group/group-detial/group-detial.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { CompeitorDetialComponentComponent } from './components/Competitor/compe
     GroupAddComponent,
     CompeitorDailogComponentComponent,
     CompeitorDetialComponentComponent,
+    GroupDetialComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@ import { GroupListModel } from './../../../models/group-list.model';
   styleUrls: ['./group-list.component.scss'],
 })
 export class GroupListComponent implements OnInit {
-  displayedColumns: string[] = ['idex', 'name'];
+  displayedColumns: string[] = ['idex', 'name', 'button'];
   groupList: GroupListModel[];
   itemsPerPage: number = 5;
   public currentPage = 1;
@@ -34,6 +34,9 @@ export class GroupListComponent implements OnInit {
         this.maxPage = res.totalPages;
         this.currentPage = res.currentPage;
       });
+  }
+  groupData(groupId: string) {
+    this.router.navigate(['/group', groupId]);
   }
   removeData() {}
   constructor(private groupService: GroupService, private router: Router) {}

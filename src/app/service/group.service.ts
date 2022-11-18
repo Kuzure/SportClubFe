@@ -62,4 +62,27 @@ export class GroupService {
       { headers }
     );
   }
+  getGroup(groupId: string): Observable<GroupListModel> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.get<GroupListModel>(
+      `https://localhost:44388/api/group/id?id=${groupId}`,
+      { headers: headers }
+    );
+  }
+  updateGroup(group: any) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.put<ResultModel>(
+      `https://localhost:44388/api/group`,
+      group,
+      { headers }
+    );
+  }
 }

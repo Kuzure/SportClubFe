@@ -13,7 +13,6 @@ import { CompeitorDailogComponentComponent } from './../compeitor-dailog-compone
 export class UserComponent implements OnInit {
   displayedColumns: string[] = [
     'idex',
-    'button',
     'firstName',
     'lastName',
     'dateOfBirth',
@@ -23,6 +22,7 @@ export class UserComponent implements OnInit {
     'is_Paid',
     'medicalExaminationExpiryDate',
     'groupName',
+    'button',
   ];
   competitorList: CompetitorList[];
   itemsPerPage: number = 5;

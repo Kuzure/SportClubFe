@@ -9,6 +9,7 @@ import { CompetiorAddComponent } from './components/Competitor/competior-add/com
 import { GroupListComponent } from './components/group/group-list/group-list.component';
 import { GroupAddComponent } from './components/group/group-add/group-add.component';
 import { CompeitorDetialComponentComponent } from './components/Competitor/compeitor-detial-component/compeitor-detial-component.component';
+import { GroupDetialComponent } from './components/group/group-detial/group-detial.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'rejestracja', component: RegisteryComponent },
@@ -40,7 +41,10 @@ const routes: Routes = [
     path: 'group/add',
     component: GroupAddComponent,
   },
-
+  {
+    path: 'group/:id',
+    component: GroupDetialComponent,
+  },
   { path: '**', component: DashboardComponent },
 ];
 
