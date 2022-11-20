@@ -15,11 +15,6 @@
           <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
         </mat-list-item>
 
-        <mat-list-item [routerLink]="'info'">
-          <mat-icon mat-list-icon>important_devices</mat-icon>
-          <span *ngIf="isExpanded" class="menu-item">Info</span>
-        </mat-list-item>
-
         <mat-list-item [routerLink]="'competitor'">
           <mat-icon mat-list-icon>people_outline</mat-icon>
           <span *ngIf="isExpanded" class="menu-item">Zawodnicy</span>
@@ -28,6 +23,11 @@
         <mat-list-item [routerLink]="'group'">
           <mat-icon mat-list-icon>group</mat-icon>
           <span *ngIf="isExpanded" class="menu-item">Grupy</span>
+        </mat-list-item>
+
+        <mat-list-item [routerLink]="'coach'">
+          <mat-icon>work</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Tenerzy</span>
         </mat-list-item>
 
         <mat-list-item

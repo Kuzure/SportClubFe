@@ -13,7 +13,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginComponent } from './components/login/login.component';
 import { SidenavWrapperComponent } from './components/sidenav-wrapper/sidenav-wrapper.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { InfoComponent } from './components/info/info.component';
 import { RegisteryComponent } from './components/registery/registery.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -38,6 +37,7 @@ import {
 } from '@angular/material/dialog';
 import { CompeitorDetialComponentComponent } from './components/Competitor/compeitor-detial-component/compeitor-detial-component.component';
 import { GroupDetialComponent } from './components/group/group-detial/group-detial.component';
+import { CoachGroupsComponent } from './components/coach/coach-groups/coach-groups.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +45,6 @@ import { GroupDetialComponent } from './components/group/group-detial/group-deti
     SidenavWrapperComponent,
     LoginComponent,
     DashboardComponent,
-    InfoComponent,
     RegisteryComponent,
     CompetiorAddComponent,
     GroupListComponent,
@@ -53,6 +52,7 @@ import { GroupDetialComponent } from './components/group/group-detial/group-deti
     CompeitorDailogComponentComponent,
     CompeitorDetialComponentComponent,
     GroupDetialComponent,
+    CoachGroupsComponent,
   ],
   imports: [
     BrowserModule,

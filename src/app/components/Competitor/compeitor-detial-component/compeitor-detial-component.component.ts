@@ -5,7 +5,7 @@ import { CompetitorService } from 'src/app/service/competitor.service';
 import { CompetitorList } from './../../../models/competitorList-model';
 import { GroupService } from 'src/app/service/group.service';
 import { GroupListModel } from './../../../models/group-list.model';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-compeitor-detial-component',
   templateUrl: './compeitor-detial-component.component.html',
@@ -18,7 +18,7 @@ export class CompeitorDetialComponentComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private competitorService: CompetitorService,
-    private router: Router,
+    private location: Location,
     private groupService: GroupService
   ) {}
   groups: Array<GroupListModel>;
@@ -85,7 +85,7 @@ export class CompeitorDetialComponentComponent implements OnInit {
     let x = JSON.parse(value);
     this.competitorService.updateCompetitor(x).subscribe(
       () => {
-        this.router.navigate(['/competitor']);
+        this.location.back();
       },
       (err) => {
         this.errorMessage = err.message;
@@ -94,6 +94,6 @@ export class CompeitorDetialComponentComponent implements OnInit {
     );
   }
   public onBack() {
-    this.router.navigate(['/competitor']);
+    this.location.back();
   }
 }

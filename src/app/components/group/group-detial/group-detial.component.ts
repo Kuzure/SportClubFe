@@ -4,6 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CompetitorService } from 'src/app/service/competitor.service';
 import { GroupService } from 'src/app/service/group.service';
 import { GroupListModel } from './../../../models/group-list.model';
+import {
+  GroupDetailscompetitorModels,
+  GroupDetailsModel,
+} from './../../../models/group-details.model';
 
 @Component({
   selector: 'app-group-detial',
@@ -14,7 +18,21 @@ export class GroupDetialComponent implements OnInit {
   hide = true;
   isLoginFailed = false;
   errorMessage = '';
-  group: GroupListModel;
+  group: GroupDetailsModel;
+  competitorList: GroupDetailscompetitorModels[];
+
+  displayedColumns: string[] = [
+    'idex',
+    'firstName',
+    'lastName',
+    'dateOfBirth',
+    'phoneNumber',
+    'gender',
+    'degree',
+    'is_Paid',
+    'medicalExaminationExpiryDate',
+    'button',
+  ];
 
   public groupForm = new FormGroup({
     id: new FormControl('', Validators.required),
@@ -35,6 +53,7 @@ export class GroupDetialComponent implements OnInit {
     this.groupService.getGroup(groupId).subscribe((res) => {
       this.group = res;
       this.iniFormGroup();
+      this.competitorList = res.competitorModels;
     });
   }
   iniFormGroup() {
@@ -64,5 +83,8 @@ export class GroupDetialComponent implements OnInit {
   }
   public onBack() {
     this.router.navigate(['/group']);
+  }
+  competitorData(competitorId: string) {
+    this.router.navigate(['/competitor', competitorId]);
   }
 }

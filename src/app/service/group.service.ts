@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { CompetitorAdd } from '../models/competitor-add-model';
 import { ResultModel } from '../models/result-model';
 import { GroupListModel } from './../models/group-list.model';
+import { GroupDetailsModel } from './../models/group-details.model';
 
 export interface GroupListResult {
   result: Array<GroupListModel>;
@@ -62,13 +63,13 @@ export class GroupService {
       { headers }
     );
   }
-  getGroup(groupId: string): Observable<GroupListModel> {
+  getGroup(groupId: string): Observable<GroupDetailsModel> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + this.currentUser,
     });
 
-    return this.http.get<GroupListModel>(
+    return this.http.get<GroupDetailsModel>(
       `https://localhost:44388/api/group/id?id=${groupId}`,
       { headers: headers }
     );
