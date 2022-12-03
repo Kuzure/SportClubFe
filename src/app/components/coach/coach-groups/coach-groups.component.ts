@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { CoachList } from 'src/app/models/coach-list-model';
+import { CoachGroupList, CoachList } from 'src/app/models/coach-list-model';
 import { CoachService } from 'src/app/service/coach.service';
+import { CoachAddToGroupComponent } from './../coach-add-to-group/coach-add-to-group.component';
 
 @Component({
   selector: 'app-coach-groups',
@@ -45,8 +47,20 @@ export class CoachGroupsComponent implements OnInit {
   coachData(coachId: string) {
     this.router.navigate(['/coach', coachId]);
   }
+  addCoachToGroup(groups: Array<CoachGroupList>, coachId: string) {
+    this.dialog.open(CoachAddToGroupComponent, {
+      data: {
+        groups,
+        coachId,
+      },
+    });
+  }
   removeData() {}
-  constructor(private coachService: CoachService, private router: Router) {}
+  constructor(
+    private coachService: CoachService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getPageableGroup();

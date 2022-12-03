@@ -40,6 +40,9 @@ import { GroupDetialComponent } from './components/group/group-detial/group-deti
 import { CoachGroupsComponent } from './components/coach/coach-groups/coach-groups.component';
 import { GroupsNamePipe } from './pipe/groups-name.pipe';
 import { CoachAddComponent } from './components/coach/coach-add/coach-add.component';
+import { CoachAddToGroupComponent } from './components/coach/coach-add-to-group/coach-add-to-group.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +60,7 @@ import { CoachAddComponent } from './components/coach/coach-add/coach-add.compon
     CoachGroupsComponent,
     GroupsNamePipe,
     CoachAddComponent,
+    CoachAddToGroupComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +86,7 @@ import { CoachAddComponent } from './components/coach/coach-add/coach-add.compon
     MatPaginatorModule,
     MatMenuModule,
     MatDialogModule,
+    MatCheckboxModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pl-PL' }],
   bootstrap: [AppComponent],

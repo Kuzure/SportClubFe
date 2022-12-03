@@ -60,7 +60,10 @@
             <mat-icon color="primary">edit</mat-icon>
             <span>Edytuj Dane Trenera</span>
           </button>
-          <button mat-menu-item (click)="coachData(element.id)">
+          <button
+            mat-menu-item
+            (click)="addCoachToGroup(element.coachGroups, element.id)"
+          >
             <mat-icon color="primary">add</mat-icon>
             <span>Dodaj prowadzone grupy</span>
           </button>
