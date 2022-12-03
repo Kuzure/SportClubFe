@@ -10,6 +10,8 @@ import { GroupAddComponent } from './components/group/group-add/group-add.compon
 import { CompeitorDetialComponentComponent } from './components/Competitor/compeitor-detial-component/compeitor-detial-component.component';
 import { GroupDetialComponent } from './components/group/group-detial/group-detial.component';
 import { CoachGroupsComponent } from './components/coach/coach-groups/coach-groups.component';
+import { CoachAddComponent } from './components/coach/coach-add/coach-add.component';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'rejestracja', component: RegisteryComponent },
@@ -44,6 +46,10 @@ const routes: Routes = [
   {
     path: 'coach',
     component: CoachGroupsComponent,
+  },
+  {
+    path: 'coach/add',
+    component: CoachAddComponent,
   },
   { path: '**', component: DashboardComponent },
 ];

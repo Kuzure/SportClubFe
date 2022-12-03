@@ -38,6 +38,8 @@ import {
 import { CompeitorDetialComponentComponent } from './components/Competitor/compeitor-detial-component/compeitor-detial-component.component';
 import { GroupDetialComponent } from './components/group/group-detial/group-detial.component';
 import { CoachGroupsComponent } from './components/coach/coach-groups/coach-groups.component';
+import { GroupsNamePipe } from './pipe/groups-name.pipe';
+import { CoachAddComponent } from './components/coach/coach-add/coach-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +55,8 @@ import { CoachGroupsComponent } from './components/coach/coach-groups/coach-grou
     CompeitorDetialComponentComponent,
     GroupDetialComponent,
     CoachGroupsComponent,
+    GroupsNamePipe,
+    CoachAddComponent,
   ],
   imports: [
     BrowserModule,
