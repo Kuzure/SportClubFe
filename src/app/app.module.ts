@@ -42,6 +42,7 @@ import { GroupsNamePipe } from './pipe/groups-name.pipe';
 import { CoachAddComponent } from './components/coach/coach-add/coach-add.component';
 import { CoachAddToGroupComponent } from './components/coach/coach-add-to-group/coach-add-to-group.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CoachDetailComponent } from './components/coach/coach-detail/coach-detail.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     GroupsNamePipe,
     CoachAddComponent,
     CoachAddToGroupComponent,
+    CoachDetailComponent,
   ],
   imports: [
     BrowserModule,

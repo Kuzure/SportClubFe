@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CoachAddToGroup } from '../components/coach/coach-add-to-group/coach-add-to-group.component';
 import { CoachAdd } from '../models/coach-add-model';
-import { CoachList } from '../models/coach-list-model';
+import { CoachList, CoachUpdate } from '../models/coach-list-model';
 import { ResultModel } from '../models/result-model';
 
 export interface CoachListResult {
@@ -59,6 +59,29 @@ export class CoachService {
     return this.http.put<ResultModel>(
       `https://localhost:44388/api/coach/addToGroup`,
       coachGroups,
+      { headers }
+    );
+  }
+  getCoach(coachId: string): Observable<CoachUpdate> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.get<CoachUpdate>(
+      `https://localhost:44388/api/coach?id=${coachId}`,
+      { headers: headers }
+    );
+  }
+  updateCoach(coach: any) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.put<ResultModel>(
+      `https://localhost:44388/api/coach`,
+      coach,
       { headers }
     );
   }

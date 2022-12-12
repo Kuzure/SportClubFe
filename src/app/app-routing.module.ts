@@ -11,6 +11,7 @@ import { CompeitorDetialComponentComponent } from './components/Competitor/compe
 import { GroupDetialComponent } from './components/group/group-detial/group-detial.component';
 import { CoachGroupsComponent } from './components/coach/coach-groups/coach-groups.component';
 import { CoachAddComponent } from './components/coach/coach-add/coach-add.component';
+import { CoachDetailComponent } from './components/coach/coach-detail/coach-detail.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -50,6 +51,10 @@ const routes: Routes = [
   {
     path: 'coach/add',
     component: CoachAddComponent,
+  },
+  {
+    path: 'coach/:id',
+    component: CoachDetailComponent,
   },
   { path: '**', component: DashboardComponent },
 ];
