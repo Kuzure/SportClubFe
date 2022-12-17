@@ -43,6 +43,9 @@ import { CoachAddComponent } from './components/coach/coach-add/coach-add.compon
 import { CoachAddToGroupComponent } from './components/coach/coach-add-to-group/coach-add-to-group.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CoachDetailComponent } from './components/coach/coach-detail/coach-detail.component';
+import { ExerciseListComponent } from './components/exercise/exercise-list/exercise-list.component';
+import { ExerciseAddComponent } from './components/exercise/exercise-add/exercise-add.component';
+import { ExerciseDetailsComponent } from './components/exercise/exercise-details/exercise-details.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +66,9 @@ import { CoachDetailComponent } from './components/coach/coach-detail/coach-deta
     CoachAddComponent,
     CoachAddToGroupComponent,
     CoachDetailComponent,
+    ExerciseListComponent,
+    ExerciseAddComponent,
+    ExerciseDetailsComponent,
   ],
   imports: [
     BrowserModule,

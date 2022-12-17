@@ -29,7 +29,10 @@
           <mat-icon>work</mat-icon>
           <span *ngIf="isExpanded" class="menu-item">Tenerzy</span>
         </mat-list-item>
-
+        <mat-list-item [routerLink]="'exercise'">
+          <mat-icon>sports_kabaddi</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Ćwiczenia</span>
+        </mat-list-item>
         <mat-list-item
           class="justify-content-end"
           [routerLink]="'login'"

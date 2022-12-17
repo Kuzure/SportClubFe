@@ -12,6 +12,9 @@ import { GroupDetialComponent } from './components/group/group-detial/group-deti
 import { CoachGroupsComponent } from './components/coach/coach-groups/coach-groups.component';
 import { CoachAddComponent } from './components/coach/coach-add/coach-add.component';
 import { CoachDetailComponent } from './components/coach/coach-detail/coach-detail.component';
+import { ExerciseListComponent } from './components/exercise/exercise-list/exercise-list.component';
+import { ExerciseAddComponent } from './components/exercise/exercise-add/exercise-add.component';
+import { ExerciseDetailsComponent } from './components/exercise/exercise-details/exercise-details.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -55,6 +58,18 @@ const routes: Routes = [
   {
     path: 'coach/:id',
     component: CoachDetailComponent,
+  },
+  {
+    path: 'exercise',
+    component: ExerciseListComponent,
+  },
+  {
+    path: 'exercise/add',
+    component: ExerciseAddComponent,
+  },
+  {
+    path: 'exercise/:id',
+    component: ExerciseDetailsComponent,
   },
   { path: '**', component: DashboardComponent },
 ];

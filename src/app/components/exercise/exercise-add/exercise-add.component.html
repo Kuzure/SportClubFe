@@ -1,0 +1,47 @@
+<div class="card card-container">
+  <div class="col">
+    <h2 class="row">Dodaj Grupe</h2>
+    <form [formGroup]="addGroupForm" class="row">
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Nazwa</mat-label>
+          <input matInput required formControlName="name" />
+          <mat-error *ngIf="addGroupForm.get('name')?.invalid">{{
+            getErrorMessage("name")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Opis</mat-label>
+          <input matInput required formControlName="description" />
+          <mat-error *ngIf="addGroupForm.get('description')?.invalid">{{
+            getErrorMessage("description")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
+    </form>
+    <div class="row d-flex justify-content-center">
+      <button
+        mat-raised-button
+        color="primary"
+        class="col d-flex justify-content-center me-1"
+        (click)="onSubmit()"
+      >
+        Dodaj
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="col d-flex justify-content-center ms-1"
+        (click)="onBack()"
+      >
+        Wróć
+      </button>
+    </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed">
+      dodanie nie powiodło się : {{ errorMessage }}
+    </div>
+  </div>
+</div>
