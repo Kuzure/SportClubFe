@@ -55,6 +55,15 @@ export class CoachGroupsComponent implements OnInit {
       },
     });
   }
+  deleteCoach(id: string) {
+    this.coachService.deleteCoach(id).subscribe(
+      () => {
+        window.location.reload();
+      },
+      (err) => {
+      }
+    );
+  }
   removeData() {}
   constructor(
     private coachService: CoachService,

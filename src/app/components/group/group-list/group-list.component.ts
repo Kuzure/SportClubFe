@@ -35,6 +35,15 @@ export class GroupListComponent implements OnInit {
         this.currentPage = res.currentPage;
       });
   }
+  deleteGroup(id: string) {
+    this.groupService.delete(id).subscribe(
+      () => {
+        window.location.reload();
+      },
+      (err) => {
+      }
+    );
+  }
   groupData(groupId: string) {
     this.router.navigate(['/group', groupId]);
   }

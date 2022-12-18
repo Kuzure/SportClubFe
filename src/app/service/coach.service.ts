@@ -62,6 +62,19 @@ export class CoachService {
       { headers }
     );
   }
+  deleteCoach(id: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.delete<ResultModel>(
+      `https://localhost:44388/api/coach?id=${id}`,
+      {
+        headers,
+      }
+    );
+  }
   getCoach(coachId: string): Observable<CoachUpdate> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -83,6 +96,20 @@ export class CoachService {
       `https://localhost:44388/api/coach`,
       coach,
       { headers }
+    );
+  }
+  disconnet(id: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.put<ResultModel>(
+      `https://localhost:44388/api/coach/disconnectedCoachFromGroup?id=${id}`,
+      {},
+      {
+        headers,
+      }
     );
   }
 }

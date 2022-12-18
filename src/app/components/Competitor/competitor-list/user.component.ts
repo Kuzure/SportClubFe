@@ -56,6 +56,15 @@ export class UserComponent implements OnInit {
       },
     });
   }
+  deleteCompetitor(id: string) {
+    this.competitorService.delete(id).subscribe(
+      () => {
+        window.location.reload();
+      },
+      (err) => {
+      }
+    );
+  }
   competitorData(competitorId: string) {
     this.router.navigate(['/competitor', competitorId]);
   }

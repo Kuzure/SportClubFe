@@ -8,6 +8,10 @@ import {
   GroupDetailscompetitorModels,
   GroupDetailsModel,
 } from './../../../models/group-details.model';
+import { CoachList } from 'src/app/models/coach-list-model';
+import { ExerciseListModel } from './../../../models/exercise-list-model';
+import { CoachService } from 'src/app/service/coach.service';
+import { ExerciseService } from 'src/app/service/exercise.service';
 
 @Component({
   selector: 'app-group-detial',
@@ -20,7 +24,8 @@ export class GroupDetialComponent implements OnInit {
   errorMessage = '';
   group: GroupDetailsModel;
   competitorList: GroupDetailscompetitorModels[];
-
+  coachList: CoachList[];
+  exerciseList: ExerciseListModel[];
   displayedColumns: string[] = [
     'idex',
     'firstName',
@@ -33,16 +38,52 @@ export class GroupDetialComponent implements OnInit {
     'medicalExaminationExpiryDate',
     'button',
   ];
+  displayedColumns2: string[] = [
+    'idex',
+    'firstName',
+    'lastName',
+    'phoneNumber',
+    'button',
+  ];
+  displayedColumns3: string[] = ['idex', 'name', 'description', 'button'];
+  itemsPerPage: number = 5;
+  public currentPage = 1;
+  totalCount: number;
+  maxPage: number;
+
+  itemsPerPage2: number = 5;
+  public currentPage2 = 1;
+  totalCount2: number;
+  maxPage2: number;
+
+  itemsPerPage3: number = 5;
+  public currentPage3 = 1;
+  totalCount3: number;
+  maxPage3: number;
 
   public groupForm = new FormGroup({
     id: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
   });
-
+  public handlePage(e: any) {
+    this.currentPage = e.pageIndex + 1;
+    this.itemsPerPage = e.pageSize;
+  }
+  public handlePage2(e: any) {
+    this.currentPage2 = e.pageIndex + 1;
+    this.itemsPerPage2 = e.pageSize;
+  }
+  public handlePage3(e: any) {
+    this.currentPage3 = e.pageIndex + 1;
+    this.itemsPerPage3 = e.pageSize;
+  }
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private competitorService: CompetitorService,
+    private coachService: CoachService,
+    private exerciseService: ExerciseService
   ) {}
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -53,7 +94,12 @@ export class GroupDetialComponent implements OnInit {
     this.groupService.getGroup(groupId).subscribe((res) => {
       this.group = res;
       this.iniFormGroup();
-      this.competitorList = res.competitorModels;
+      this.competitorList = res?.competitorModels;
+      this.coachList = res?.coachListModels;
+      this.exerciseList = res?.exerciseListModels;
+      this.totalCount2 = this.coachList?.length;
+      this.totalCount = this.competitorList?.length;
+      this.totalCount3 = this.exerciseList?.length;
     });
   }
   iniFormGroup() {
@@ -84,7 +130,34 @@ export class GroupDetialComponent implements OnInit {
   public onBack() {
     this.router.navigate(['/group']);
   }
+  coachData(coachId: string) {
+    this.router.navigate(['/coach', coachId]);
+  }
   competitorData(competitorId: string) {
     this.router.navigate(['/competitor', competitorId]);
+  }
+  disconectFromGroup(competitorId: string) {
+    this.competitorService.disconnet(competitorId).subscribe(
+      () => {
+        window.location.reload();
+      },
+      (err) => {}
+    );
+  }
+  disconectFromGroupCoach(coachid: string) {
+    this.coachService.disconnet(coachid).subscribe(
+      () => {
+        window.location.reload();
+      },
+      (err) => {}
+    );
+  }
+  disconectFromGroupExercise(exerciseId: string) {
+    this.exerciseService.disconnet(exerciseId).subscribe(
+      () => {
+        window.location.reload();
+      },
+      (err) => {}
+    );
   }
 }

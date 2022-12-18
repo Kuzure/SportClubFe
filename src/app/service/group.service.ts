@@ -37,6 +37,19 @@ export class GroupService {
       }
     );
   }
+  delete(id: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.delete<ResultModel>(
+      `https://localhost:44388/api/group?id=${id}`,
+      {
+        headers,
+      }
+    );
+  }
   getGroupList(
     page: number,
     itemsPerPage: number

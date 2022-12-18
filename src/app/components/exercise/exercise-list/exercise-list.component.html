@@ -50,6 +50,10 @@
             <mat-icon color="primary">edit</mat-icon>
             <span>Edytuj Ćwiczenie</span>
           </button>
+          <button mat-menu-item (click)="deleteExercise(element.id)">
+            <mat-icon color="primary">delete</mat-icon>
+            <span>Usuń</span>
+          </button>
         </mat-menu>
       </td>
     </ng-container>

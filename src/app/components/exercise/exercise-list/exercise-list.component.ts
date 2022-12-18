@@ -36,6 +36,15 @@ export class ExerciseListComponent implements OnInit {
         this.currentPage = res.currentPage;
       });
   }
+  deleteExercise(id: string) {
+    this.exerciseService.delete(id).subscribe(
+      () => {
+        window.location.reload();
+      },
+      (err) => {
+      }
+    );
+  }
   addExerciseToGroup(competitorId: string) {}
   exerciseData(exerciseId: string) {
     this.router.navigate(['/exercise', exerciseId]);

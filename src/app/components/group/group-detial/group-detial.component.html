@@ -1,4 +1,4 @@
-<div class="card card-container">
+<div class="card card-container row">
   <div class="col">
     <h2 class="row">Edytuj Grupę</h2>
     <form [formGroup]="groupForm" class="row">
@@ -36,6 +36,18 @@
     </div>
   </div>
 </div>
+<div class="demo-button-container d-flex d-flex justify-content-between row">
+  <h2 class="col">Zawodnicy</h2>
+  <button
+    color="primary"
+    mat-raised-button
+    class="demo-button col d-flex justify-content-end"
+  >
+    <mat-icon>add</mat-icon>
+    Dodaj Zawodnika do grupy
+  </button>
+</div>
+
 <div class="border row">
   <table
     mat-table
@@ -66,7 +78,7 @@
     <ng-container matColumnDef="dateOfBirth">
       <th mat-header-cell *matHeaderCellDef>Data Urodzenia</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.dateOfBirth | date: "dd MMM yyyy" }}
+        {{ element.dateOfBirth | date : "dd MMM yyyy" }}
       </td>
     </ng-container>
 
@@ -99,7 +111,7 @@
     <ng-container matColumnDef="medicalExaminationExpiryDate">
       <th mat-header-cell *matHeaderCellDef>Data Ważności Badań Lekarskich</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.medicalExaminationExpiryDate | date: "dd MMM yyyy" }}
+        {{ element.medicalExaminationExpiryDate | date : "dd MMM yyyy" }}
       </td>
     </ng-container>
 
@@ -118,6 +130,10 @@
             <mat-icon color="primary">edit</mat-icon>
             <span>Edytuj Zawodnika</span>
           </button>
+          <button mat-menu-item (click)="disconectFromGroup(element.id)">
+            <mat-icon color="primary">delete</mat-icon>
+            <span>Usuń zawodnika z grupy</span>
+          </button>
         </mat-menu>
       </td>
     </ng-container>
@@ -125,4 +141,141 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+  <mat-paginator
+    [length]="totalCount"
+    [pageSize]="itemsPerPage"
+    (page)="handlePage($event)"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons="true"
+  >
+  </mat-paginator>
+</div>
+<div class="row">
+  <h2 class="col">Trenerzy</h2>
+</div>
+
+<div class="border">
+  <table mat-table [dataSource]="coachList" class="mat-elevation-z8 demo-table">
+    <!-- Position Column -->
+    <ng-container matColumnDef="idex">
+      <th mat-header-cell *matHeaderCellDef>Nr</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ i + 1 + itemsPerPage2 * (currentPage2 - 1) }}
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef>Imię</th>
+      <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Nazwsisko</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef>Numer Telefonu</th>
+      <td mat-cell *matCellDef="let element">{{ element.phoneNumber }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="button">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="coachData(element.id)">
+            <mat-icon color="primary">edit</mat-icon>
+            <span>Edytuj Dane Trenera</span>
+          </button>
+          <button mat-menu-item (click)="disconectFromGroupCoach(element.id)">
+            <mat-icon color="primary">delete</mat-icon>
+            <span>Usuń trenera z grupy</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2"></tr>
+  </table>
+  <mat-paginator
+    [length]="totalCount2"
+    [pageSize]="itemsPerPage2"
+    (page)="handlePage2($event)"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons="true"
+  >
+  </mat-paginator>
+</div>
+<h2>Ćwiczenia</h2>
+<div class="border">
+  <table
+    mat-table
+    [dataSource]="exerciseList"
+    class="mat-elevation-z8 demo-table"
+  >
+    <!-- Position Column -->
+    <ng-container matColumnDef="idex">
+      <th mat-header-cell *matHeaderCellDef>Nr</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ i + 1 + itemsPerPage * (currentPage - 1) }}
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Opis</th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="button">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button
+            mat-menu-item
+            (click)="disconectFromGroupExercise(element.id)"
+          >
+            <mat-icon color="primary">delete</mat-icon>
+            <span>Usuń ćwiczenie z grupy</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns3"></tr>
+  </table>
+  <mat-paginator
+    [length]="totalCount3"
+    [pageSize]="itemsPerPage3"
+    (page)="handlePage3($event)"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons="true"
+  >
+  </mat-paginator>
 </div>

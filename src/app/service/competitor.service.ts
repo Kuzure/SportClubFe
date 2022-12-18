@@ -24,6 +24,33 @@ export class CompetitorService {
   constructor(private http: HttpClient) {
     this.currentUser = localStorage.getItem('Token')!;
   }
+  delete(id: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.delete<ResultModel>(
+      `https://localhost:44388/api/competitor?id=${id}`,
+      {
+        headers,
+      }
+    );
+  }
+  disconnet(id: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.put<ResultModel>(
+      `https://localhost:44388/api/competitor/disconnectedCompetitorFromGroup?id=${id}`,
+      {},
+      {
+        headers,
+      }
+    );
+  }
   getCompetitorList(
     page: number,
     itemsPerPage: number

@@ -26,6 +26,19 @@ export class ExerciseService {
   constructor(private http: HttpClient) {
     this.currentUser = localStorage.getItem('Token')!;
   }
+  delete(id: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.delete<ResultModel>(
+      `https://localhost:44388/api/exercise?id=${id}`,
+      {
+        headers,
+      }
+    );
+  }
   getExerciseList(
     page: number,
     itemsPerPage: number
@@ -73,6 +86,20 @@ export class ExerciseService {
       `https://localhost:44388/api/exercise`,
       exercise,
       { headers }
+    );
+  }
+  disconnet(id: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.put<ResultModel>(
+      `https://localhost:44388/api/exercise/disconnectedExerciseFromGroup?id=${id}`,
+      {},
+      {
+        headers,
+      }
     );
   }
 }
