@@ -5,6 +5,7 @@ import { ResultModel } from '../models/result-model';
 import { CompetitorList } from './../models/competitorList-model';
 import { CompetitorAdd } from './../models/competitor-add-model';
 import { CompetitorGroupAdd } from './../models/competitor-group-add';
+import { CompetitorAddToGroup } from '../components/group/group-competitor-add/group-competitor-add.component';
 
 export interface CompetitorListResult {
   result: Array<CompetitorList>;
@@ -109,6 +110,29 @@ export class CompetitorService {
     return this.http.put<ResultModel>(
       `https://localhost:44388/api/competitor`,
       competitor,
+      { headers }
+    );
+  }
+  getFreeCompetitor(id: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.get<CompetitorList[]>(
+      `https://localhost:44388/api/competitor/all?GroupId=${id}`,
+      { headers: headers }
+    );
+  }
+  addCompetitorsGroup(competitors: CompetitorAddToGroup) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.put<ResultModel>(
+      `https://localhost:44388/api/competitor/addCompetitorsToGroup`,
+      competitors,
       { headers }
     );
   }

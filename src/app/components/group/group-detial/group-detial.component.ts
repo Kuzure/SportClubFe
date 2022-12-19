@@ -12,6 +12,10 @@ import { CoachList } from 'src/app/models/coach-list-model';
 import { ExerciseListModel } from './../../../models/exercise-list-model';
 import { CoachService } from 'src/app/service/coach.service';
 import { ExerciseService } from 'src/app/service/exercise.service';
+import { GroupCoachesAddComponent } from './../group-coaches-add/group-coaches-add.component';
+import { MatDialog } from '@angular/material/dialog';
+import { GroupCompetitorAddComponent } from './../group-competitor-add/group-competitor-add.component';
+import { GroupExerciseAddComponent } from './../group-exercise-add/group-exercise-add.component';
 
 @Component({
   selector: 'app-group-detial',
@@ -26,6 +30,11 @@ export class GroupDetialComponent implements OnInit {
   competitorList: GroupDetailscompetitorModels[];
   coachList: CoachList[];
   exerciseList: ExerciseListModel[];
+
+  freecompetitorList: GroupDetailscompetitorModels[];
+  freecoachList: CoachList[];
+  freeexerciseList: ExerciseListModel[];
+
   displayedColumns: string[] = [
     'idex',
     'firstName',
@@ -61,6 +70,7 @@ export class GroupDetialComponent implements OnInit {
   totalCount3: number;
   maxPage3: number;
 
+  groupId: string;
   public groupForm = new FormGroup({
     id: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
@@ -83,12 +93,13 @@ export class GroupDetialComponent implements OnInit {
     private groupService: GroupService,
     private competitorService: CompetitorService,
     private coachService: CoachService,
-    private exerciseService: ExerciseService
+    private exerciseService: ExerciseService,
+    private dialog: MatDialog
   ) {}
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
-    let groupId = String(routeParams.get('id'));
-    this.getGroup(groupId);
+    this.groupId = String(routeParams.get('id'));
+    this.getGroup(this.groupId);
   }
   getGroup(groupId: string) {
     this.groupService.getGroup(groupId).subscribe((res) => {
@@ -102,6 +113,7 @@ export class GroupDetialComponent implements OnInit {
       this.totalCount3 = this.exerciseList?.length;
     });
   }
+
   iniFormGroup() {
     this.groupForm.setValue({
       id: this.group.id,
@@ -159,5 +171,26 @@ export class GroupDetialComponent implements OnInit {
       },
       (err) => {}
     );
+  }
+  addCoachesToGroup() {
+    this.dialog.open(GroupCoachesAddComponent, {
+      data: {
+        groupId: this.groupId,
+      },
+    });
+  }
+  addCompetitorsToGroup() {
+    this.dialog.open(GroupCompetitorAddComponent, {
+      data: {
+        groupId: this.groupId,
+      },
+    });
+  }
+  addExercisesToGroup() {
+    this.dialog.open(GroupExerciseAddComponent, {
+      data: {
+        groupId: this.groupId,
+      },
+    });
   }
 }

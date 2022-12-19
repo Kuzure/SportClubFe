@@ -1,0 +1,26 @@
+<div>
+  <h1 mat-dialog-title>Wybierz trenerów</h1>
+  <div *ngFor="let data of selectedExercise">
+    <mat-checkbox [checked]="data.selected" [(ngModel)]="data.selected">
+      {{ data.name }}e
+    </mat-checkbox>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <button
+      mat-raised-button
+      color="primary"
+      class="col d-flex justify-content-center me-1"
+      (click)="onSubmit()"
+    >
+      Dodaj
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="col d-flex justify-content-center ms-1"
+      (click)="onBack()"
+    >
+      Wróć
+    </button>
+  </div>
+</div>

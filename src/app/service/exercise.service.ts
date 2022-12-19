@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ExerciseAddToGroup } from '../components/group/group-exercise-add/group-exercise-add.component';
 import {
   ExerciseListModel,
   ExerciseModel,
@@ -100,6 +101,29 @@ export class ExerciseService {
       {
         headers,
       }
+    );
+  }
+  getFreeExercise(id: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.get<ExerciseListModel[]>(
+      `https://localhost:44388/api/exercise/all?GroupId=${id}`,
+      { headers: headers }
+    );
+  }
+  addExerciseToGroup(exercises: ExerciseAddToGroup) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.put<ResultModel>(
+      `https://localhost:44388/api/exercise/addExerciseToGroup`,
+      exercises,
+      { headers }
     );
   }
 }

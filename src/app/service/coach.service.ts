@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CoachAddToGroup } from '../components/coach/coach-add-to-group/coach-add-to-group.component';
+import { CoachesAddToGroup } from '../components/group/group-coaches-add/group-coaches-add.component';
 import { CoachAdd } from '../models/coach-add-model';
 import { CoachList, CoachUpdate } from '../models/coach-list-model';
 import { ResultModel } from '../models/result-model';
@@ -110,6 +111,29 @@ export class CoachService {
       {
         headers,
       }
+    );
+  }
+  getFreeCoach(id: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.get<CoachList[]>(
+      `https://localhost:44388/api/coach/all?GroupId=${id}`,
+      { headers: headers }
+    );
+  }
+  addCoachesToGroup(coachesGroups: CoachesAddToGroup) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.currentUser,
+    });
+
+    return this.http.put<ResultModel>(
+      `https://localhost:44388/api/coach/addCoachesToGroup`,
+      coachesGroups,
+      { headers }
     );
   }
 }

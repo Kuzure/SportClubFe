@@ -38,17 +38,20 @@
 </div>
 <div class="demo-button-container d-flex d-flex justify-content-between row">
   <h2 class="col">Zawodnicy</h2>
-  <button
-    color="primary"
-    mat-raised-button
-    class="demo-button col d-flex justify-content-end"
-  >
-    <mat-icon>add</mat-icon>
-    Dodaj Zawodnika do grupy
-  </button>
+  <p class="col d-flex justify-content-end">
+    <button
+      color="primary"
+      mat-raised-button
+      class="demo-button"
+      (click)="addCompetitorsToGroup()"
+    >
+      <mat-icon>add</mat-icon>
+      Dodaj zawodnika do grupy
+    </button>
+  </p>
 </div>
 
-<div class="border row">
+<div class="border">
   <table
     mat-table
     [dataSource]="competitorList"
@@ -150,8 +153,19 @@
   >
   </mat-paginator>
 </div>
-<div class="row">
+<div class="demo-button-container d-flex d-flex justify-content-between row">
   <h2 class="col">Trenerzy</h2>
+  <p class="col d-flex justify-content-end">
+    <button
+      color="primary"
+      mat-raised-button
+      class="demo-button"
+      (click)="addCoachesToGroup()"
+    >
+      <mat-icon>add</mat-icon>
+      Dodaj trenera do grupy
+    </button>
+  </p>
 </div>
 
 <div class="border">
@@ -218,7 +232,16 @@
   >
   </mat-paginator>
 </div>
-<h2>Ćwiczenia</h2>
+<div class="demo-button-container d-flex d-flex justify-content-between row">
+  <h2 class="col">Ćwiczenia</h2>
+  <p class="col d-flex justify-content-end">
+    <button color="primary" mat-raised-button class="demo-button" (click)="addExercisesToGroup()">
+      <mat-icon>add</mat-icon>
+      Dodaj ćwiczenia do grupy
+    </button>
+  </p>
+</div>
+
 <div class="border">
   <table
     mat-table

@@ -46,6 +46,9 @@ import { CoachDetailComponent } from './components/coach/coach-detail/coach-deta
 import { ExerciseListComponent } from './components/exercise/exercise-list/exercise-list.component';
 import { ExerciseAddComponent } from './components/exercise/exercise-add/exercise-add.component';
 import { ExerciseDetailsComponent } from './components/exercise/exercise-details/exercise-details.component';
+import { GroupCoachesAddComponent } from './components/group/group-coaches-add/group-coaches-add.component';
+import { GroupCompetitorAddComponent } from './components/group/group-competitor-add/group-competitor-add.component';
+import { GroupExerciseAddComponent } from './components/group/group-exercise-add/group-exercise-add.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,9 @@ import { ExerciseDetailsComponent } from './components/exercise/exercise-details
     ExerciseListComponent,
     ExerciseAddComponent,
     ExerciseDetailsComponent,
+    GroupCoachesAddComponent,
+    GroupCompetitorAddComponent,
+    GroupExerciseAddComponent,
   ],
   imports: [
     BrowserModule,
