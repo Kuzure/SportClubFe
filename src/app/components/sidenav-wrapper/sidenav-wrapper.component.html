@@ -9,12 +9,11 @@
           >chevron_right
         </mat-icon>
       </mat-list-item>
+      <mat-list-item [routerLink]="'dashboard'">
+        <mat-icon mat-list-icon>home</mat-icon>
+        <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
+      </mat-list-item>
       <span *ngIf="isLogin">
-        <mat-list-item [routerLink]="'dashboard'">
-          <mat-icon mat-list-icon>home</mat-icon>
-          <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
-        </mat-list-item>
-
         <mat-list-item [routerLink]="'competitor'">
           <mat-icon mat-list-icon>people_outline</mat-icon>
           <span *ngIf="isExpanded" class="menu-item">Zawodnicy</span>
