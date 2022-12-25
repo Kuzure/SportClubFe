@@ -15,6 +15,7 @@ export class GroupListComponent implements OnInit {
   public currentPage = 1;
   totalCount: number;
   maxPage: number;
+  show: boolean = false;
   addData() {
     this.router.navigate(['group/add']);
   }
@@ -38,9 +39,11 @@ export class GroupListComponent implements OnInit {
   deleteGroup(id: string) {
     this.groupService.delete(id).subscribe(
       () => {
+        this.show = false;
         window.location.reload();
       },
       (err) => {
+        this.show = true;
       }
     );
   }

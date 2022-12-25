@@ -36,7 +36,7 @@ export class CompeitorDetialComponentComponent implements OnInit {
     gender: new FormControl('', Validators.required),
     degree: new FormControl('', Validators.required),
     medicalExaminationExpiryDate: new FormControl('', Validators.required),
-    is_Paid: new FormControl(false, Validators.required),
+    isPaid: new FormControl(false, Validators.required),
     groupId: new FormControl('', Validators.required),
   });
   ngOnInit(): void {
@@ -67,7 +67,7 @@ export class CompeitorDetialComponentComponent implements OnInit {
       degree: this.competitor.degree,
       medicalExaminationExpiryDate:
         this.competitor.medicalExaminationExpiryDate,
-      is_Paid: this.competitor.is_Paid,
+        isPaid: this.competitor.isPaid,
       groupId: this.competitor.groupId,
     });
   }

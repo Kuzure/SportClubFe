@@ -6,7 +6,7 @@ export class RegisteryUser {
   phoneNumber: string;
   gender: number;
   degree: number; 
-  is_Paid: boolean;
+  isPaid: boolean;
 }
 export enum Gender {
   male = 0,

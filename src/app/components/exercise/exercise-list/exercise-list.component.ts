@@ -16,6 +16,7 @@ export class ExerciseListComponent implements OnInit {
   public currentPage = 1;
   totalCount: number;
   maxPage: number;
+  show: boolean = false;
   addData() {
     this.router.navigate(['exercise/add']);
   }
@@ -39,9 +40,11 @@ export class ExerciseListComponent implements OnInit {
   deleteExercise(id: string) {
     this.exerciseService.delete(id).subscribe(
       () => {
+        this.show = false;
         window.location.reload();
       },
       (err) => {
+        this.show = true;
       }
     );
   }

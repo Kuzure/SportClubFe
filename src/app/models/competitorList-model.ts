@@ -6,7 +6,7 @@ export class CompetitorList {
   phoneNumber: string;
   gender: string;
   degree: string;
-  is_Paid: boolean;
+  isPaid: boolean;
   medicalExaminationExpiryDate: string;
   groupName: string;
   groupId: string;

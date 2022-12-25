@@ -43,7 +43,7 @@ export class GroupDetialComponent implements OnInit {
     'phoneNumber',
     'gender',
     'degree',
-    'is_Paid',
+    'isPaid',
     'medicalExaminationExpiryDate',
     'button',
   ];

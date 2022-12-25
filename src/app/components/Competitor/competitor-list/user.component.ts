@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
     'phoneNumber',
     'gender',
     'degree',
-    'is_Paid',
+    'isPaid',
     'medicalExaminationExpiryDate',
     'groupName',
     'button',

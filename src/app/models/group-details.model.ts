@@ -15,6 +15,6 @@ export class GroupDetailscompetitorModels {
   phoneNumber: string;
   gender: string;
   degree: string;
-  is_Paid: boolean;
+  isPaid: boolean;
   medicalExaminationExpiryDate: string;
 }

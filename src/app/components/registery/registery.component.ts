@@ -57,7 +57,7 @@ export class RegisteryComponent implements OnInit {
     ]),
     gender: new FormControl('', Validators.required),
     degree: new FormControl('', Validators.required),
-    is_Paid: new FormControl(false),
+    isPaid: new FormControl(false),
   });
 
   ngOnInit(): void {}

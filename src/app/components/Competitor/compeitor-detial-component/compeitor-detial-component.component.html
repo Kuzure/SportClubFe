@@ -110,12 +110,12 @@
       <p>
         <mat-form-field appearance="fill">
           <mat-label>Skład opłacona</mat-label>
-          <mat-select formControlName="is_Paid">
+          <mat-select formControlName="isPaid">
             <mat-option [value]="true">Tak</mat-option>
             <mat-option [value]="false">Nie</mat-option>
           </mat-select>
-          <mat-error *ngIf="addCompetitorForm.get('is_Paid')?.invalid">{{
-            getErrorMessage("is_Paid")
+          <mat-error *ngIf="addCompetitorForm.get('isPaid')?.invalid">{{
+            getErrorMessage("isPaid")
           }}</mat-error>
         </mat-form-field>
       </p>
