@@ -49,6 +49,7 @@ import { ExerciseDetailsComponent } from './components/exercise/exercise-details
 import { GroupCoachesAddComponent } from './components/group/group-coaches-add/group-coaches-add.component';
 import { GroupCompetitorAddComponent } from './components/group/group-competitor-add/group-competitor-add.component';
 import { GroupExerciseAddComponent } from './components/group/group-exercise-add/group-exercise-add.component';
+import { AuthGuard } from './service/authGuard';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,7 @@ import { GroupExerciseAddComponent } from './components/group/group-exercise-add
     MatDialogModule,
     MatCheckboxModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pl-PL' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'pl-PL' }, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

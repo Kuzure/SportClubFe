@@ -23,11 +23,13 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http
-      .post<ResultModel>(`https://localhost:44388/api/user/login`, {
+    return this.http.post<ResultModel>(
+      `https://localhost:44388/api/user/login`,
+      {
         email,
         password,
-      });
+      }
+    );
   }
   register(user: RegisteryUser) {
     return this.http.post<ResultModel>(

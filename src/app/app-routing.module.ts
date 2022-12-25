@@ -15,6 +15,7 @@ import { CoachDetailComponent } from './components/coach/coach-detail/coach-deta
 import { ExerciseListComponent } from './components/exercise/exercise-list/exercise-list.component';
 import { ExerciseAddComponent } from './components/exercise/exercise-add/exercise-add.component';
 import { ExerciseDetailsComponent } from './components/exercise/exercise-details/exercise-details.component';
+import { AuthGuard } from './service/authGuard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -26,50 +27,62 @@ const routes: Routes = [
   {
     path: 'competitor',
     component: UserComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'competitor/add',
     component: CompetiorAddComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'competitor/:id',
     component: CompeitorDetialComponentComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'group',
     component: GroupListComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'group/add',
     component: GroupAddComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'group/:id',
     component: GroupDetialComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'coach',
     component: CoachGroupsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'coach/add',
     component: CoachAddComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'coach/:id',
     component: CoachDetailComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'exercise',
     component: ExerciseListComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'exercise/add',
     component: ExerciseAddComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'exercise/:id',
     component: ExerciseDetailsComponent,
+    canActivate: [AuthGuard],
   },
   { path: '**', component: DashboardComponent },
 ];
