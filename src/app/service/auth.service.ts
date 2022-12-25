@@ -27,15 +27,7 @@ export class AuthService {
       .post<ResultModel>(`https://localhost:44388/api/user/login`, {
         email,
         password,
-      })
-      .pipe(
-        map((user) => {
-          if (!user.isError) {
-            return user.result;
-          }
-          return '';
-        })
-      );
+      });
   }
   register(user: RegisteryUser) {
     return this.http.post<ResultModel>(
