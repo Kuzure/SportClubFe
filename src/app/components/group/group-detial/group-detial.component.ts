@@ -41,11 +41,11 @@ export class GroupDetialComponent implements OnInit {
     'lastName',
     'dateOfBirth',
     'phoneNumber',
-    'gender',
     'degree',
     'isPaid',
     'medicalExaminationExpiryDate',
     'button',
+    'list',
   ];
   displayedColumns2: string[] = [
     'idex',

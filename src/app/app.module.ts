@@ -50,6 +50,7 @@ import { GroupCoachesAddComponent } from './components/group/group-coaches-add/g
 import { GroupCompetitorAddComponent } from './components/group/group-competitor-add/group-competitor-add.component';
 import { GroupExerciseAddComponent } from './components/group/group-exercise-add/group-exercise-add.component';
 import { AuthGuard } from './service/authGuard';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { AuthGuard } from './service/authGuard';
     GroupExerciseAddComponent,
   ],
   imports: [
+    NgxPrintModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
