@@ -235,7 +235,12 @@
 <div class="demo-button-container d-flex d-flex justify-content-between row">
   <h2 class="col">Ćwiczenia</h2>
   <p class="col d-flex justify-content-end">
-    <button color="primary" mat-raised-button class="demo-button" (click)="addExercisesToGroup()">
+    <button
+      color="primary"
+      mat-raised-button
+      class="demo-button"
+      (click)="addExercisesToGroup()"
+    >
       <mat-icon>add</mat-icon>
       Dodaj ćwiczenia do grupy
     </button>
@@ -266,6 +271,10 @@
     <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef>Opis</th>
       <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+    <ng-container matColumnDef="repetitions">
+      <th mat-header-cell *matHeaderCellDef>Powtórzenia</th>
+      <td mat-cell *matCellDef="let element">{{ element.repetitions }}</td>
     </ng-container>
 
     <ng-container matColumnDef="button">

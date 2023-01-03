@@ -10,7 +10,13 @@ import { ExerciseService } from 'src/app/service/exercise.service';
   styleUrls: ['./exercise-list.component.scss'],
 })
 export class ExerciseListComponent implements OnInit {
-  displayedColumns: string[] = ['idex', 'name', 'description', 'button'];
+  displayedColumns: string[] = [
+    'idex',
+    'name',
+    'description',
+    'repetitions',
+    'button',
+  ];
   exerciseList: ExerciseListModel[];
   itemsPerPage: number = 5;
   public currentPage = 1;

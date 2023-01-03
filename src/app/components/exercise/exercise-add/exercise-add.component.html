@@ -20,6 +20,15 @@
           }}</mat-error>
         </mat-form-field>
       </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Powtórzenia</mat-label>
+          <input type="number" matInput required formControlName="repetitions" />
+          <mat-error *ngIf="addGroupForm.get('repetitions')?.invalid">{{
+            getErrorMessage("repetitions")
+          }}</mat-error>
+        </mat-form-field>
+      </p>
     </form>
     <div class="row d-flex justify-content-center">
       <button

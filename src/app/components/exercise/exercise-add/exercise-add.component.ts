@@ -26,6 +26,7 @@ export class ExerciseAddComponent implements OnInit {
   public addGroupForm = new FormGroup({
     name: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
+    repetitions: new FormControl(null, Validators.required),
   });
 
   ngOnInit(): void {}

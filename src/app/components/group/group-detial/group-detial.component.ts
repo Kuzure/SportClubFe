@@ -54,7 +54,13 @@ export class GroupDetialComponent implements OnInit {
     'phoneNumber',
     'button',
   ];
-  displayedColumns3: string[] = ['idex', 'name', 'description', 'button'];
+  displayedColumns3: string[] = [
+    'idex',
+    'name',
+    'description',
+    'repetitions',
+    'button',
+  ];
   itemsPerPage: number = 5;
   public currentPage = 1;
   totalCount: number;

@@ -30,6 +30,7 @@ export class ExerciseDetailsComponent implements OnInit {
     id: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
+    repetitions: new FormControl(0, Validators.required),
   });
 
   ngOnInit(): void {
@@ -50,6 +51,7 @@ export class ExerciseDetailsComponent implements OnInit {
       id: this.exercise.id,
       name: this.exercise.name,
       description: this.exercise.description,
+      repetitions: this.exercise.repetitions,
     });
   }
 
