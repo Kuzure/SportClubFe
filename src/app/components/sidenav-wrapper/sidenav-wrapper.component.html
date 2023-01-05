@@ -11,7 +11,7 @@
       </mat-list-item>
       <mat-list-item [routerLink]="'dashboard'">
         <mat-icon mat-list-icon>home</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
+        <span *ngIf="isExpanded" class="menu-item">Strona główna</span>
       </mat-list-item>
       <span *ngIf="isLogin">
         <mat-list-item [routerLink]="'competitor'">
@@ -45,10 +45,10 @@
         <mat-icon mat-list-icon>login</mat-icon>
         <span *ngIf="isExpanded" class="menu-item">Login</span>
       </mat-list-item>
-      <mat-list-item *ngIf="!isLogin" [routerLink]="'rejestracja'">
+      <!-- <mat-list-item *ngIf="!isLogin" [routerLink]="'rejestracja'">
         <mat-icon mat-list-icon>login</mat-icon>
         <span *ngIf="isExpanded" class="menu-item">Rejestracja</span>
-      </mat-list-item>
+      </mat-list-item> -->
     </mat-nav-list>
   </mat-sidenav>
 

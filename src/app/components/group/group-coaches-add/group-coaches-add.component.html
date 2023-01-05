@@ -1,6 +1,8 @@
-<div>
-  <h1 mat-dialog-title>Wybierz trenerów</h1>
-  <div *ngFor="let data of selectedCoach">
+<div class="width">
+  <h1 mat-dialog-title class="d-flex justify-content-center">
+    Wybierz trenerów
+  </h1>
+  <div *ngFor="let data of selectedCoach" class="d-flex justify-content-center mb-1">
     <mat-checkbox [checked]="data.selected" [(ngModel)]="data.selected">
       {{ data.firstName + " " + data.lastName }}
     </mat-checkbox>

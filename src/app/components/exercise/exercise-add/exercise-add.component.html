@@ -1,6 +1,6 @@
 <div class="card card-container">
   <div class="col">
-    <h2 class="row">Dodaj Grupe</h2>
+    <h2 class="row">Dodaj ćwiczenie</h2>
     <form [formGroup]="addGroupForm" class="row">
       <p>
         <mat-form-field appearance="fill">
@@ -14,7 +14,12 @@
       <p>
         <mat-form-field appearance="fill">
           <mat-label>Opis</mat-label>
-          <input matInput required formControlName="description" />
+          <textarea
+            matInput
+            required
+            formControlName="description"
+            rows="5"
+          ></textarea>
           <mat-error *ngIf="addGroupForm.get('description')?.invalid">{{
             getErrorMessage("description")
           }}</mat-error>
@@ -23,7 +28,12 @@
       <p>
         <mat-form-field appearance="fill">
           <mat-label>Powtórzenia</mat-label>
-          <input type="number" matInput required formControlName="repetitions" />
+          <input
+            type="number"
+            matInput
+            required
+            formControlName="repetitions"
+          />
           <mat-error *ngIf="addGroupForm.get('repetitions')?.invalid">{{
             getErrorMessage("repetitions")
           }}</mat-error>

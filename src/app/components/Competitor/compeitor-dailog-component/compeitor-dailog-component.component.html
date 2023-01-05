@@ -1,6 +1,6 @@
-<div>
-  <h1 mat-dialog-title>Wybierz grupe</h1>
-  <mat-form-field appearance="fill">
+<div class="width">
+  <h1 mat-dialog-title class="d-flex justify-content-center">Wybierz grupe</h1>
+  <mat-form-field appearance="fill" class="d-flex justify-content-center">
     <mat-label>Nazwa Grupy</mat-label>
     <mat-select [(ngModel)]="group" name="group">
       <mat-option *ngFor="let group of groups" [value]="group.id">

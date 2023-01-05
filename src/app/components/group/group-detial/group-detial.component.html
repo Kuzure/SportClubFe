@@ -170,15 +170,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-  <mat-paginator
-    class="hidden"
-    [length]="totalCount"
-    [pageSize]="itemsPerPage"
-    (page)="handlePage($event)"
-    [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons="true"
-  >
-  </mat-paginator>
 </div>
 <div class="demo-button-container d-flex d-flex justify-content-between row">
   <h2 class="col">Trenerzy</h2>
@@ -250,14 +241,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns2"></tr>
   </table>
-  <mat-paginator
-    [length]="totalCount2"
-    [pageSize]="itemsPerPage2"
-    (page)="handlePage2($event)"
-    [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons="true"
-  >
-  </mat-paginator>
 </div>
 <div class="demo-button-container d-flex d-flex justify-content-between row">
   <h2 class="col">Ćwiczenia</h2>
@@ -276,6 +259,7 @@
       color="primary"
       mat-raised-button
       class="demo-button"
+      printTitle="Lista ćwiczeń"
       printSectionId="print-section"
       [useExistingCss]="true"
       [printStyle]="{
@@ -350,13 +334,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns3"></tr>
   </table>
-  <mat-paginator
-    class="hidden"
-    [length]="totalCount3"
-    [pageSize]="itemsPerPage3"
-    (page)="handlePage3($event)"
-    [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons="true"
-  >
-  </mat-paginator>
 </div>

@@ -25,8 +25,8 @@ export class CompetiorAddComponent implements OnInit {
   errorMessage = '';
 
   genders: any[] = [
-    { name: 'male', value: 1 },
-    { name: 'female', value: 2 },
+    { name: 'male', value: 0 },
+    { name: 'female', value: 1 },
   ];
 
   kyus: any[] = [

@@ -51,6 +51,7 @@ import { GroupCompetitorAddComponent } from './components/group/group-competitor
 import { GroupExerciseAddComponent } from './components/group/group-exercise-add/group-exercise-add.component';
 import { AuthGuard } from './service/authGuard';
 import { NgxPrintModule } from 'ngx-print';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { NgxPrintModule } from 'ngx-print';
     GroupExerciseAddComponent,
   ],
   imports: [
+    FullCalendarModule,
     NgxPrintModule,
     BrowserModule,
     HttpClientModule,
