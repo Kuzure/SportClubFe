@@ -92,6 +92,39 @@ export class CompeitorDetialComponentComponent implements OnInit {
     this.addCompetitorForm.controls['gender'].value == 'Mężczyzna'
       ? this.addCompetitorForm.controls['gender'].setValue('Male')
       : this.addCompetitorForm.controls['gender'].setValue('Female');
+      switch(this.addCompetitorForm.controls['degree'].value)
+      {
+        case '1 Kyu':
+          this.addCompetitorForm.controls['degree'].setValue('Kyu1');
+          break;
+        case '2 Kyu':
+          this.addCompetitorForm.controls['degree'].setValue('Kyu2');
+          break;
+        case '3 Kyu':
+            this.addCompetitorForm.controls['degree'].setValue('Kyu3');
+            break;
+        case '4 Kyu':
+          this.addCompetitorForm.controls['degree'].setValue('Kyu4');
+          break;
+        case '5 Kyu':
+          this.addCompetitorForm.controls['degree'].setValue('Kyu5');
+          break;
+        case '6 Kyu':
+            this.addCompetitorForm.controls['degree'].setValue('Kyu6');
+            break;
+        case '1 Dan':
+          this.addCompetitorForm.controls['degree'].setValue('1 Dan');
+          break;
+        case '2 Dan':
+          this.addCompetitorForm.controls['degree'].setValue('2 Dan');
+          break;
+        case '3 Dan':
+            this.addCompetitorForm.controls['degree'].setValue('3 Dan');
+            break;
+        case '4 Dan':
+          this.addCompetitorForm.controls['degree'].setValue('4 Dan');
+          break;
+      }
     const value = JSON.stringify(this.addCompetitorForm.value);
     let x = JSON.parse(value);
     this.competitorService.updateCompetitor(x).subscribe(
@@ -115,6 +148,9 @@ interface Builder {
 }
 class ConcreteCompetitorDetail implements Builder {
   competitorDetail: CompetitorList;
+  constructor(){
+    this.competitorDetail=new CompetitorList();
+  }
 
   createCompetitor(competitorData: CompetitorData): void {
     this.competitorDetail.isPaid = competitorData.isPaid;

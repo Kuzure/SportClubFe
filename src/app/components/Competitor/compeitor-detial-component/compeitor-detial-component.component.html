@@ -68,16 +68,16 @@
         <mat-form-field appearance="fill">
           <mat-label>Wybierz stopień</mat-label>
           <mat-select formControlName="degree">
-            <mat-option value="Kyu1">kyu1</mat-option>
-            <mat-option value="Kyu2">kyu2</mat-option>
-            <mat-option value="Kyu3">kyu2</mat-option>
-            <mat-option value="Kyu4">kyu2</mat-option>
-            <mat-option value="Kyu5">kyu2</mat-option>
-            <mat-option value="Kyu6">kyu2</mat-option>
-            <mat-option value="Dan1">dan1</mat-option>
-            <mat-option value="Dan2">dan2</mat-option>
-            <mat-option value="Dan3">dan3</mat-option>
-            <mat-option value="Dan4">dan4</mat-option>
+            <mat-option value="1 Kyu">1 Kyu</mat-option>
+            <mat-option value="2 Kyu">2 Kyu</mat-option>
+            <mat-option value="3 Kyu">3 Kyu</mat-option>
+            <mat-option value="4 Kyu">4 Kyu</mat-option>
+            <mat-option value="5 Kyu">5 Kyu</mat-option>
+            <mat-option value="6 Kyu">6 Kyu</mat-option>
+            <mat-option value="1 Dan">1 Dan</mat-option>
+            <mat-option value="2 Dan">2 Dan</mat-option>
+            <mat-option value="3 Dan">3 Dan</mat-option>
+            <mat-option value="4 Dan">4 Dan</mat-option>
           </mat-select>
           <mat-error *ngIf="addCompetitorForm.get('degree')?.invalid">{{
             getErrorMessage("degree")
