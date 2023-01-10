@@ -6,6 +6,7 @@ import { CompetitorList } from './../models/competitorList-model';
 import { CompetitorAdd } from './../models/competitor-add-model';
 import { CompetitorGroupAdd } from './../models/competitor-group-add';
 import { CompetitorAddToGroup } from '../components/group/group-competitor-add/group-competitor-add.component';
+import { CompetitorDetailModel } from './../models/competitor-details-model';
 
 export interface CompetitorListResult {
   result: Array<CompetitorList>;
@@ -90,13 +91,13 @@ export class CompetitorService {
       { headers }
     );
   }
-  getCompetitor(competitorId: string): Observable<CompetitorList> {
+  getCompetitor(competitorId: string): Observable<CompetitorDetailModel> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + this.currentUser,
     });
 
-    return this.http.get<CompetitorList>(
+    return this.http.get<CompetitorDetailModel>(
       `https://localhost:44388/api/competitor?id=${competitorId}`,
       { headers: headers }
     );

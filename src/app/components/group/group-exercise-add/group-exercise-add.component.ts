@@ -17,12 +17,8 @@ import { ExerciseListModel } from './../../../models/exercise-list-model';
 export class GroupExerciseAddComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public group: any,
-    private competitorService: CompetitorService,
-    private coachService: CoachService,
     private exerciseService: ExerciseService,
-    private groupService: GroupService,
     public dialogRef: MatDialogRef<CoachAddToGroupComponent>,
-    private ruter: Router
   ) {}
   selectedExercise: Array<SelectedExercise> = [];
   exercises: Array<CoachList>;

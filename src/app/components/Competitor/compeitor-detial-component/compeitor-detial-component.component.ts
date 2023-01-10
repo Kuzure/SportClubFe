@@ -6,6 +6,11 @@ import { CompetitorList } from './../../../models/competitorList-model';
 import { GroupService } from 'src/app/service/group.service';
 import { GroupListModel } from './../../../models/group-list.model';
 import { Location } from '@angular/common';
+import {
+  CompetitorData,
+  GroupData,
+  IdentityData,
+} from 'src/app/models/competitor-details-model';
 @Component({
   selector: 'app-compeitor-detial-component',
   templateUrl: './compeitor-detial-component.component.html',
@@ -21,8 +26,10 @@ export class CompeitorDetialComponentComponent implements OnInit {
     private location: Location,
     private groupService: GroupService
   ) {}
+
   groups: Array<GroupListModel>;
   competitor: CompetitorList;
+
   public addCompetitorForm = new FormGroup({
     id: new FormControl('', Validators.required),
     firstName: new FormControl('', Validators.required),
@@ -47,7 +54,11 @@ export class CompeitorDetialComponentComponent implements OnInit {
   }
   getCompetitor(competitorId: string) {
     this.competitorService.getCompetitor(competitorId).subscribe((res) => {
-      this.competitor = res;
+      const builder = new ConcreteCompetitorDetail();
+      builder.createGroup(res.groupData);
+      builder.createCompetitor(res.competitorData);
+      builder.createIdentity(res.identityData);
+      this.competitor = builder.getCompetitorDetail();
       this.iniFormGroup();
     });
   }
@@ -67,7 +78,7 @@ export class CompeitorDetialComponentComponent implements OnInit {
       degree: this.competitor.degree,
       medicalExaminationExpiryDate:
         this.competitor.medicalExaminationExpiryDate,
-        isPaid: this.competitor.isPaid,
+      isPaid: this.competitor.isPaid,
       groupId: this.competitor.groupId,
     });
   }
@@ -95,5 +106,36 @@ export class CompeitorDetialComponentComponent implements OnInit {
   }
   public onBack() {
     this.location.back();
+  }
+}
+interface Builder {
+  createCompetitor(competitorData: CompetitorData): void;
+  createIdentity(identityData: IdentityData): void;
+  createGroup(groupData: GroupData): void;
+}
+class ConcreteCompetitorDetail implements Builder {
+  competitorDetail: CompetitorList;
+
+  createCompetitor(competitorData: CompetitorData): void {
+    this.competitorDetail.isPaid = competitorData.isPaid;
+    this.competitorDetail.id = competitorData.id;
+    this.competitorDetail.medicalExaminationExpiryDate =
+      competitorData.medicalExaminationExpiryDate;
+  }
+  createIdentity(identityData: IdentityData): void {
+    this.competitorDetail.firstName = identityData.firstName;
+    this.competitorDetail.lastName = identityData.lastName;
+    this.competitorDetail.dateOfBirth = identityData.dateOfBirth;
+    this.competitorDetail.degree = identityData.degree;
+    this.competitorDetail.gender = identityData.gender;
+    this.competitorDetail.phoneNumber = identityData.phoneNumber;
+  }
+  createGroup(groupData: GroupData): void {
+    this.competitorDetail.groupId = groupData.groupId;
+    this.competitorDetail.groupName = groupData.groupName;
+  }
+  public getCompetitorDetail(): CompetitorList {
+    const result = this.competitorDetail;
+    return result;
   }
 }
