@@ -52,6 +52,7 @@ import { GroupExerciseAddComponent } from './components/group/group-exercise-add
 import { AuthGuard } from './service/authGuard';
 import { NgxPrintModule } from 'ngx-print';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { DateTimePipe } from './pipe/data-time.pipe';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     GroupCoachesAddComponent,
     GroupCompetitorAddComponent,
     GroupExerciseAddComponent,
+    DateTimePipe,
   ],
   imports: [
     FullCalendarModule,

@@ -39,7 +39,7 @@
     <ng-container matColumnDef="dateOfBirth">
       <th mat-header-cell *matHeaderCellDef>Data Urodzenia</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.dateOfBirth | date : "dd MMM yyyy" }}
+        {{ element.dateOfBirth | dateTime }}
       </td>
     </ng-container>
 
@@ -72,7 +72,7 @@
     <ng-container matColumnDef="medicalExaminationExpiryDate">
       <th mat-header-cell *matHeaderCellDef>Ważność Badań Lekarskich</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.medicalExaminationExpiryDate | date : "dd MMM yyyy" }}
+        {{ element.medicalExaminationExpiryDate  | dateTime}}
       </td>
     </ng-container>
 
