@@ -8,6 +8,7 @@ import { GroupListModel } from './../../../models/group-list.model';
 import { Location } from '@angular/common';
 import {
   CompetitorData,
+  CompetitorDetailModel,
   GroupData,
   IdentityData,
 } from 'src/app/models/competitor-details-model';
@@ -28,7 +29,6 @@ export class CompeitorDetialComponentComponent implements OnInit {
   ) {}
 
   groups: Array<GroupListModel>;
-  competitor: CompetitorList;
 
   public addCompetitorForm = new FormGroup({
     id: new FormControl('', Validators.required),
@@ -52,16 +52,16 @@ export class CompeitorDetialComponentComponent implements OnInit {
     this.getCompetitor(competitorId);
     this.getGroups();
   }
+
+  competitor: CompetitorList;
   getCompetitor(competitorId: string) {
     this.competitorService.getCompetitor(competitorId).subscribe((res) => {
-      const builder = new ConcreteCompetitorDetail();
-      builder.createGroup(res.groupData);
-      builder.createCompetitor(res.competitorData);
-      builder.createIdentity(res.identityData);
-      this.competitor = builder.getCompetitorDetail();
+      const builder = new CreateCompetitorDetail();
+      this.competitor = builder.getCompetitorDetail(res);
       this.iniFormGroup();
     });
   }
+
   getGroups() {
     this.groupService.getGroups().subscribe((res) => {
       this.groups = res;
@@ -92,39 +92,38 @@ export class CompeitorDetialComponentComponent implements OnInit {
     this.addCompetitorForm.controls['gender'].value == 'Mężczyzna'
       ? this.addCompetitorForm.controls['gender'].setValue('Male')
       : this.addCompetitorForm.controls['gender'].setValue('Female');
-      switch(this.addCompetitorForm.controls['degree'].value)
-      {
-        case '1 Kyu':
-          this.addCompetitorForm.controls['degree'].setValue('Kyu1');
-          break;
-        case '2 Kyu':
-          this.addCompetitorForm.controls['degree'].setValue('Kyu2');
-          break;
-        case '3 Kyu':
-            this.addCompetitorForm.controls['degree'].setValue('Kyu3');
-            break;
-        case '4 Kyu':
-          this.addCompetitorForm.controls['degree'].setValue('Kyu4');
-          break;
-        case '5 Kyu':
-          this.addCompetitorForm.controls['degree'].setValue('Kyu5');
-          break;
-        case '6 Kyu':
-            this.addCompetitorForm.controls['degree'].setValue('Kyu6');
-            break;
-        case '1 Dan':
-          this.addCompetitorForm.controls['degree'].setValue('1 Dan');
-          break;
-        case '2 Dan':
-          this.addCompetitorForm.controls['degree'].setValue('2 Dan');
-          break;
-        case '3 Dan':
-            this.addCompetitorForm.controls['degree'].setValue('3 Dan');
-            break;
-        case '4 Dan':
-          this.addCompetitorForm.controls['degree'].setValue('4 Dan');
-          break;
-      }
+    switch (this.addCompetitorForm.controls['degree'].value) {
+      case '1 Kyu':
+        this.addCompetitorForm.controls['degree'].setValue('Kyu1');
+        break;
+      case '2 Kyu':
+        this.addCompetitorForm.controls['degree'].setValue('Kyu2');
+        break;
+      case '3 Kyu':
+        this.addCompetitorForm.controls['degree'].setValue('Kyu3');
+        break;
+      case '4 Kyu':
+        this.addCompetitorForm.controls['degree'].setValue('Kyu4');
+        break;
+      case '5 Kyu':
+        this.addCompetitorForm.controls['degree'].setValue('Kyu5');
+        break;
+      case '6 Kyu':
+        this.addCompetitorForm.controls['degree'].setValue('Kyu6');
+        break;
+      case '1 Dan':
+        this.addCompetitorForm.controls['degree'].setValue('1 Dan');
+        break;
+      case '2 Dan':
+        this.addCompetitorForm.controls['degree'].setValue('2 Dan');
+        break;
+      case '3 Dan':
+        this.addCompetitorForm.controls['degree'].setValue('3 Dan');
+        break;
+      case '4 Dan':
+        this.addCompetitorForm.controls['degree'].setValue('4 Dan');
+        break;
+    }
     const value = JSON.stringify(this.addCompetitorForm.value);
     let x = JSON.parse(value);
     this.competitorService.updateCompetitor(x).subscribe(
@@ -146,10 +145,10 @@ interface Builder {
   createIdentity(identityData: IdentityData): void;
   createGroup(groupData: GroupData): void;
 }
-class ConcreteCompetitorDetail implements Builder {
+class CreateCompetitorDetail implements Builder {
   competitorDetail: CompetitorList;
-  constructor(){
-    this.competitorDetail=new CompetitorList();
+  constructor() {
+    this.competitorDetail = new CompetitorList();
   }
 
   createCompetitor(competitorData: CompetitorData): void {
@@ -170,8 +169,10 @@ class ConcreteCompetitorDetail implements Builder {
     this.competitorDetail.groupId = groupData.groupId;
     this.competitorDetail.groupName = groupData.groupName;
   }
-  public getCompetitorDetail(): CompetitorList {
-    const result = this.competitorDetail;
-    return result;
+  public getCompetitorDetail(data: CompetitorDetailModel): CompetitorList {
+    this.createCompetitor(data.competitorData);
+    this.createGroup(data.groupData);
+    this.createIdentity(data.identityData);
+    return this.competitorDetail;
   }
 }
